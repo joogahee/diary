@@ -22,6 +22,8 @@ public class RemoveMemberController extends HttpServlet {
 			response.sendRedirect(request.getContextPath()+"/member/loginMember");
 			return;
 		}
+		
+		
 		//view forward
 		request.getRequestDispatcher("/WEB-INF/view/member/removeMember.jsp").forward(request, response);
 		

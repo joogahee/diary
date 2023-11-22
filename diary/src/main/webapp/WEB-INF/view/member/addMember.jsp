@@ -4,12 +4,12 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery-3.7.1.min.js">
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js">
 </script>
 </head>
 <body>
 	<h1>회원가입</h1>
-	<form id="addForm" method="post" action="<%=request.getContextPath()%>/member/addMember">
+	<form id="addForm" method="post" action="${pageContext.request.contextPath}/member/addMember">
 		<table border="1">
 			<tr>
 				<td>memberId</td>

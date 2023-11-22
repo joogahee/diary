@@ -39,6 +39,8 @@ public class LoginMemberController extends HttpServlet {
 			response.sendRedirect(request.getContextPath()+"/member/memberHome");
 			return;
 		}
+		
+		
 		String memberId= request.getParameter("memberId");
 		String memberPw= request.getParameter("memberPw");
 		

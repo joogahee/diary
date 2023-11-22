@@ -38,7 +38,7 @@ public class ModifyMemberController extends HttpServlet {
 			response.sendRedirect(request.getContextPath()+"/member/loginMember");
 			return;
 		}
-		
+				
 		//요청분석
 		String memberId = request.getParameter("memberId");
 		String memberPw = request.getParameter("memberPw");

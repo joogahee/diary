@@ -1,10 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="vo.*" %>
-<%
-	Member member = new Member();
-	member = (Member)session.getAttribute("loginMember");
-%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,11 +8,11 @@
 </head>
 <body>
 	<h1>비밀번호 변경</h1>
-	<form id="modifyForm" method="post" action="<%=request.getContextPath()%>/member/modifyPwMember">
+	<form id="modifyForm" method="post" action="${pageContext.request.contextPath}/member/modifyPwMember">
 		<table border="1">
 			<tr>
 				<td>아이디</td>
-				<td><input type="text" id="memberId" name="memberId" value="<%=member.getMemberId() %>" readonly="readonly"></td>
+				<td><input type="text" id="memberId" name="memberId" value="${loginMember.memberId}" readonly="readonly"></td>
 			</tr>
 			<tr>
 				<td>기존 비밀번호</td>
