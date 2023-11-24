@@ -12,14 +12,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import dao.NoticeDao;
 import dao.ScheduleDao;
+import vo.Member;
 
 @WebServlet("/member/memberHome")
 public class MemberHomeController extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//session 유효성 검사
-		
 		HttpSession session = request.getSession();
 		if(session.getAttribute("loginMember") == null) {
 			response.sendRedirect(request.getContextPath()+"/member/loginMember");
@@ -59,10 +60,17 @@ public class MemberHomeController extends HttpServlet {
 		
 		//schedule 모델
 		ScheduleDao scheduleDao = new ScheduleDao();
+		
+		Member member = (Member)session.getAttribute("loginMember");
+		
 		//param: String 로그인아이디, int 출력연도, int 출력월
-		List<Map<String,Object>> list = scheduleDao.selectScheduleByMonth("goodee", targetY, targetM+1);
+		List<Map<String,Object>> list = scheduleDao.selectScheduleByMonth(member.getMemberId(), targetY, targetM+1);
 		
 		System.out.println(list.size() + " <--list.size");
+		
+		//공지 출력위한 모델값
+		NoticeDao noticeDao = new NoticeDao();
+		List<Map<String,Object>> list2 = noticeDao.selectNoticeList();
 		
 		// 넘기는데 2가지 방법 1.하나하나 보내는 것 , 2.map사용해서 랩핑해서 한번에 보내는 것
 		
@@ -74,6 +82,7 @@ public class MemberHomeController extends HttpServlet {
 		request.setAttribute("totalTd", totalTd);
 		
 		request.setAttribute("list", list);	//schedule 모델
+		request.setAttribute("list2", list2);	//notice 모델
 								
 		request.getRequestDispatcher("/WEB-INF/view/member/memberHome.jsp").forward(request, response);
 	}

@@ -23,6 +23,32 @@
 		<!-- 탈퇴액션 RemoveMemberController.doPost() [session invalidate]-- removeMember.jsp /member/loginMember -->
 	</div>
 	
+	<!-- 공지 -->
+	<div>
+		<h3>공지사항</h3>
+		<a href="${pageContext.request.contextPath}/notice/addNotice">공지추가</a>
+		<div>
+			<table border="1">
+				<tr>
+					<th>번호</th>
+					<th>제목</th>
+					<th>작성일</th>
+				</tr>
+				<c:forEach var="n" items="${list2}">
+					<tr>
+						<td>${n.noticeNo}</td>
+						<td>
+							<a href="${pageContext.request.contextPath}/notice/noticeOne?noticeNo=${n.noticeNo}">
+								${n.noticeTitle}
+							</a>
+						</td>
+						<td>${n.createdate}</td>
+					</tr>
+				</c:forEach>
+			</table>
+		</div>
+	</div>
+	
 	<!-- 달력 -->
 	<div class="container">
 		<h1>${targetY }년 ${targetM+1}월 </h1>
@@ -37,7 +63,7 @@
 		
 	<div>
 		<div>
-			<table>
+			<table border="1">
 				<tr>
 					<th>일</th>
 					<th>월</th>

@@ -57,8 +57,8 @@ public class AddScheduleController extends HttpServlet {
 			System.out.println("일정추가 성공");
 		}
 		
-		//포워딩
-		request.getRequestDispatcher("/WEB-INF/view/member/memberHome.jsp").forward(request, response);
+		//리다이렉트
+		response.sendRedirect(request.getContextPath()+"/member/memberHome");
 		
 	}
 

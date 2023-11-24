@@ -14,7 +14,7 @@
 			<!-- param영역에도 날짜가 저장되어 있으므로 -->
 			<!--<h2>${loginMember.memberId}님의 ${param.targetY}년 ${param.targetM+1}월 ${param.targetD}일의 일정</h2>-->
 			<!-- 로 받아도 됨 --> 
-			<h2>${loginMember.memberId}님의 ${targetY}년 ${targetM+1}월 ${targetD}일의 일정</h2> 
+			<h2>${loginMember.memberId}님의 ${targetY}년 ${targetM}월 ${targetD}일의 일정</h2> 
 		</div>
 		<div>
 			<table>
@@ -37,7 +37,7 @@
 						<td>
 							<form method="post" action="${pageContext.request.contextPath}/schedule/removeScheduleByDay">
 								<input type="hidden" name="targetY" value="${targetY}">
-								<input type="hidden" name="targetM" value="${targetM+1}">
+								<input type="hidden" name="targetM" value="${targetM}">
 								<input type="hidden" name="targetD" value="${targetD}">
 								<input type="hidden" name="scheduleNo" value="${s.scheduleNo }">
 								<button type="submit">삭제</button>
@@ -52,7 +52,7 @@
 		<h3>일정추가</h3>
 			<form method="post" action="${pageContext.request.contextPath}/schedule/addSchedule" >
 				<input type="hidden" name="targetY" value="${targetY}">
-				<input type="hidden" name="targetM" value="${targetM+1}">
+				<input type="hidden" name="targetM" value="${targetM}">
 				<input type="hidden" name="targetD" value="${targetD}">
 				<textarea rows="3" cols="80" name="scheduleMemo"></textarea>
 				<button type="submit">추가</button>
