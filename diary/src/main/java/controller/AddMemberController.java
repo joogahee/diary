@@ -12,9 +12,7 @@ import javax.servlet.http.HttpSession;
 import dao.MemberDao;
 import vo.Member;
 
-/**
- * Servlet implementation class addMemberController
- */
+
 @WebServlet("/member/addMember")
 public class AddMemberController extends HttpServlet {
 

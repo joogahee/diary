@@ -2,6 +2,8 @@ package controller;
 
 import java.io.IOException;
 import java.util.Calendar;
+import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,19 +12,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import dao.ScheduleDao;
 
 @WebServlet("/member/memberHome")
 public class MemberHomeController extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//session 유효성 검사
-		/*
+		
 		HttpSession session = request.getSession();
 		if(session.getAttribute("loginMember") == null) {
 			response.sendRedirect(request.getContextPath()+"/member/loginMember");
 			return;
 		}
-		*/
 		
 		//달력에 출력하는데 필요한 모델
 		//1) 출력하고자 하는 년/월/1일
@@ -55,6 +57,13 @@ public class MemberHomeController extends HttpServlet {
 		//5) 전체 TD의 개수
 		int totalTd = beginBlank + endBlank + lastD;
 		
+		//schedule 모델
+		ScheduleDao scheduleDao = new ScheduleDao();
+		//param: String 로그인아이디, int 출력연도, int 출력월
+		List<Map<String,Object>> list = scheduleDao.selectScheduleByMonth("goodee", targetY, targetM+1);
+		
+		System.out.println(list.size() + " <--list.size");
+		
 		// 넘기는데 2가지 방법 1.하나하나 보내는 것 , 2.map사용해서 랩핑해서 한번에 보내는 것
 		
 		request.setAttribute("targetY", targetY);
@@ -63,6 +72,8 @@ public class MemberHomeController extends HttpServlet {
 		request.setAttribute("beginBlank", beginBlank);
 		request.setAttribute("endBlank", endBlank);
 		request.setAttribute("totalTd", totalTd);
+		
+		request.setAttribute("list", list);	//schedule 모델
 								
 		request.getRequestDispatcher("/WEB-INF/view/member/memberHome.jsp").forward(request, response);
 	}

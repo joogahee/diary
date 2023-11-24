@@ -3,56 +3,10 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
-<style>
-th {
- 	background-color: #3cb371;
-}
-
-td{
-	background-color: #fffff0;
-}
-table {
-	width: 700px;
-	height: 500px;
-}
-p {
-  	/* 수평 중앙 정렬하기 */
-  	text-align: center;
-}
-h2{
-	text-align: center;
-}
-
-.container {
- 	font-family: arial;
-  	font-size: 24px;
-  	width: 600px;
-  	height: 500px;
- 	outline: 1px black;
-  	margin: 0 auto;
-}
-.button{
-	background-color: #77af9c;
-    color: #d7fff1;
-    margin: 9px;
-    padding: 8px 18px;  
-  	font-size: 14px;
-  	margin-bottom: 40px;
-}
-
-.button2{
-	background-color: #98fb98;
-    color: #000000;
-    padding: 8px 18px;  
-  	font-size: 14px;
-  	margin-bottom: 40px;
-}
-
-
-</style>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<!--<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/schedule.css">-->
 </head>
 <body>
 
@@ -77,7 +31,11 @@ h2{
 			<a class="button2" href="${pageContext.request.contextPath}/member/memberHome?targetY=${targetY}&targetM=${targetM-1}">이전달</a>
 			<a class="button2" href="${pageContext.request.contextPath}/member/memberHome?targetY=${targetY}&targetM=${targetM+1}">다음달</a>		
 		</div>
+	</div>
+	
 		<br>
+		
+	<div>
 		<div>
 			<table>
 				<tr>
@@ -91,14 +49,24 @@ h2{
 				</tr>
 				<tr>
 					<c:forEach var="i" begin="1" end="${totalTd}" step="1">
+						<c:set var="d" value="${i - beginBlank}"></c:set>
 						<td>
-							<c:if test="${i - beginBlank < 1 || i - beginBlank > lastD }">
+							<c:if test="${ d < 1 || d > lastD }">
 								&nbsp;
 							</c:if>
-							<c:if test="${!(i - beginBlank < 1 || i - beginBlank > lastD )}">
-								<a href="">
-									${i - beginBlank}
+							<c:if test="${!(d < 1 || d > lastD )}">
+								<a href="${pageContext.request.contextPath}/schedule/scheduleByDay?targetY=${targetY}&targetM=${targetM+1}&targetD=${d}">
+									${d}
 								</a>
+								<div>
+									<c:forEach var="m" items="${list}">
+										<c:if test="${m.scheduleDay == (d)}">
+											<div>${m.cnt}</div>
+											<div>${m.memo}</div>
+										</c:if>
+									</c:forEach>
+								</div>
+									
 							</c:if>
 							
 							<c:if test="${i<totalTd && i%7==0 }">

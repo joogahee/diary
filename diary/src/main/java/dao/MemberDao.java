@@ -14,13 +14,12 @@ import vo.Member;
 public class MemberDao {
 	
 	//비밀번호 변경
+	/*
+	  	비밀번호 변경
+	  	UPDATE member SET member_pw = PASSWORD(?) WHERE member_id = ? AND member_ps = PASSWORD(?)
+	 */
 	public int updateMember(String memberId, String memberPw, String newMemberPw) {
 		int row = 0;
-		/*
-		 * 비밀번호 변경
-		 * UPDATE member SET member_pw = PASSWORD(?) WHERE member_id = ? AND member_ps = PASSWORD(?)
-		 */
-		
 		//커넥션풀
 		//자원해제를 위해서 try...catch문 밖에 생성
 		Connection conn = null;
@@ -57,13 +56,12 @@ public class MemberDao {
 	
 	
 	//회원탈퇴
+	/*
+	  	멤버삭제
+	  	DELETE FROM member WHERE member_id = ? AND member_pw = PASSWORD(?)
+	 */
 	public int deleteMember(Member paramMember) {
 		int row = 0;
-		/*
-		 * 멤버삭제
-		 * DELETE FROM member WHERE member_id = ? AND member_pw = PASSWORD(?)
-		 */
-		
 		//커넥션풀
 		//자원해제를 위해서 try...catch문 밖에 생성
 		Connection conn = null;
@@ -99,13 +97,13 @@ public class MemberDao {
 	
 	
 	//로그인
+	/*
+	  	SELECT member_no memberNo, member_id memberId
+			FROM diary
+			WHERE member_id = ? AND member_pw = PASSWORD(?);
+	 */
 	public Member loginMember(Member paramMember) {
 		Member resultMember = null;
-		/*
-		 * SELECT member_no memberNo, member_id memberId
-				FROM diary
-				WHERE member_id = ? AND member_pw = PASSWORD(?);
-		 */
 		//커넥션풀
 		//자원해제를 위해서 try...catch문 밖에 생성
 		Connection conn = null;
@@ -153,13 +151,12 @@ public class MemberDao {
 	
 	
 	//회원가입
+	/*
+	 * INSERT INTO member(member_id, member_pw) VALUE(?,PASSWORD(?))
+	 */
+	
 	public int insertMember(Member paramMember) {
 		int row = 0;
-		/*
-		 * 멤버추가
-		 * INSERT INTO member(member_id, member_pw) VALUE(?,PASSWORD(?))
-		 */
-		
 		//커넥션풀
 		//자원해제를 위해서 try...catch문 밖에 생성
 		Connection conn = null;

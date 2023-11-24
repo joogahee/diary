@@ -1,0 +1,62 @@
+@charset "UTF-8";
+th {
+ 	background-color: #3cb371;
+}
+
+td{
+	background-color: #fffff0;
+	width: 60px;
+  	height: 50px;
+}
+table {
+	width: 800px;
+	height: 600px;
+	display: flex;
+    margin: 0 auto 
+}
+
+.centered-div {
+    width: 300px; /* 원하는 가로 크기로 조정 */
+    height: 200px; /* 원하는 세로 크기로 조정 */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #f1f1f1; /* 배경색 설정 */
+    border: 1px solid #ddd; /* 테두리 설정 */
+    padding: 20px; /* 내부 여백 설정 */
+    box-sizing: border-box; /* 테두리와 패딩을 포함한 크기 계산 */
+}
+
+p {
+  	/* 수평 중앙 정렬하기 */
+  	text-align: center;
+}
+h2{
+	text-align: center;
+}
+
+.container {
+ 	font-family: arial;
+  	font-size: 24px;
+  	width: 600px;
+  	height: 200px;
+  	margin: 0 auto;
+}
+
+.button{
+	background-color: #77af9c;
+    color: #d7fff1;
+    margin: 9px;
+    padding: 8px 18px;  
+  	font-size: 14px;
+  	margin-bottom: 40px;
+}
+
+.button2{
+	background-color: #98fb98;
+    color: #000000;
+    padding: 8px 18px;  
+  	font-size: 14px;
+  	margin-bottom: 40px;
+}
