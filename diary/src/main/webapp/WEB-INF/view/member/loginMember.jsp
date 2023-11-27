@@ -7,24 +7,22 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
 </head>
 <body>	
-	<div class="login-page">
-  		<div class="form">
-  			<!--  
-    		<form class="register-form">
-      			<input type="text" placeholder="ID"/>
-      			<input type="password" placeholder="PASSWORD"/>
-      			<button>회원가입</button>
-      			<p class="message">로그인하기 <a href="#">회원가입</a></p>
-    		</form>
-    		-->
-    		<form id="loginForm" method="post" action="${pageContext.request.contextPath}/member/loginMember">
-      			<input type="text" placeholder="ID" id="memberId" name="memberId">
-      			<input type="password" placeholder="PASSWORD" id="memberPw" name="memberPw">
-      			<button>로그인</button>
-      			<p class="message">회원가입하기 <a id="loginBtn">로그인</a></p>
-    		</form>
-  		</div>
-	</div>
+	 <header>
+            <h2>Login</h2>
+        </header>
+        
+  	<div class="login">
+    	<form id="loginForm" method="post" action="${pageContext.request.contextPath}/member/loginMember">
+      		<div class="input-box">
+      		<input type="text" placeholder="ID" id="memberId" name="memberId">
+      		</div>
+      		<div class="input-box">
+      		<input type="password" placeholder="PASSWORD" id="memberPw" name="memberPw">
+      		</div>
+      		<button>로그인</button>
+      		<p class="message">회원가입하기 <a id="loginBtn">로그인</a></p>
+    	</form>
+  	</div>
 </body>
 
 
