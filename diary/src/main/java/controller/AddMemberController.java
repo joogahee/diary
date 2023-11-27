@@ -19,6 +19,9 @@ public class AddMemberController extends HttpServlet {
        
 	//폼
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		System.out.println("AddMemberController 실행");
+		
 		//session 유효성 검사
 		HttpSession session = request.getSession();
 		if(session.getAttribute("loginMember") != null) {
@@ -33,8 +36,6 @@ public class AddMemberController extends HttpServlet {
 	}
 	//액션
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		request.setCharacterEncoding("utf-8");
 		
 		//session 유효성 검사
 		HttpSession session = request.getSession();

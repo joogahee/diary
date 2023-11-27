@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import dao.NoticeDao;
+import vo.Member;
 import vo.Notice;
 
 
@@ -26,8 +27,7 @@ public class ModifyNoticeController extends HttpServlet {
 		
 		//요청분석
 		int noticeNo = Integer.parseInt(request.getParameter("noticeNo"));
-		String password = request.getParameter("password");
-		
+
 		Notice notice = new Notice();
 		NoticeDao noticeDao = new NoticeDao();
 		
@@ -45,7 +45,26 @@ public class ModifyNoticeController extends HttpServlet {
 		if(session.getAttribute("loginMember") == null) {
 			response.sendRedirect(request.getContextPath()+"/member/loginMember");
 			return;
-		}	
+		}
+		
+		//요청분석
+		String password = (String)request.getAttribute("password");
+		int noticeNo = (int)request.getAttribute("noticeNo");
+		String noticeTitle = request.getParameter("noticeTitle");
+		String noticeContent = request.getParameter("noticeContent");
+		
+		Notice notice = new Notice();
+		notice.setNoticeNo(noticeNo);
+		notice.setNoticeTitle(noticeTitle);
+		notice.setNoticeContent(noticeContent);
+		
+		Member member = (Member)session.getAttribute("loginMember");
+		String memberId = member.getMemberId();
+		
+		notice.setMemberId(memberId);
+		
+		
+		
 	}
 
 }

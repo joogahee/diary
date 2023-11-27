@@ -30,8 +30,6 @@ public class RemoveMemberController extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//인코딩
-		request.setCharacterEncoding("utf-8");
 		
 		//session 유효성 검사
 		HttpSession session = request.getSession();

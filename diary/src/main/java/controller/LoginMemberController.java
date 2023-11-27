@@ -43,8 +43,7 @@ public class LoginMemberController extends HttpServlet {
 		
 		String memberId= request.getParameter("memberId");
 		String memberPw= request.getParameter("memberPw");
-		
-		request.setCharacterEncoding("utf-8");
+	
 		
 		Member paramMember = new Member();	
 		
