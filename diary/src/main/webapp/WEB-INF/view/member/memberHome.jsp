@@ -11,9 +11,20 @@
 <body>
 
 	<h2>안녕하세요! ${loginMember.memberId} 님</h2>
-	<h3>현재 접속자 수: <c:out value="${applicationScope.currentCnt}" /> 명</h3>
-	<h3>오늘 총 접속자 수: <c:out value="${applicationScope.sumByToday}" /> 명</h3>
+	<!--  
+	<c:if test="${not empty applicationScope.currentCnt}">
+    	<h3>현재 접속자 수: <c:out value="${applicationScope.currentCnt}" /> 명</h3>
+	</c:if>
 
+	<c:if test="${not empty applicationScope.sumByToday}">
+   	 	<h3>총 접속자 수: <c:out value="${applicationScope.sumByToday}" /> 명</h3>
+	</c:if>
+	
+	<c:if test="${not empty applicationScope.todayCnt}">
+   	 	<h3>오늘 총 접속자 수: <c:out value="${applicationScope.todayCnt}" /> 명</h3>
+	</c:if>
+	-->
+	
 	<div>
 		<p><a class="button" href="${pageContext.request.contextPath}/member/logoutMember">로그아웃</a>
 		<!-- LogoutMemberController.doGet() --[session invalidate]-- /login/Member-->

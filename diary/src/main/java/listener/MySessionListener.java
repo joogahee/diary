@@ -24,11 +24,11 @@ public class MySessionListener implements HttpSessionListener {
     	
     	//오늘 날짜 누적 접속자
     	CounterDao counterDao = new CounterDao();
-    	int counter = counterDao.selectCounterByToday();
-    	System.out.println(counter + "<--counter!");
+    	int todayCnt = counterDao.selectCounterByToday();
+    	System.out.println(todayCnt + "<--오늘 총 접속자");
     	int row = 0;
     	
-    	if(counter == 0) {//오늘 첫번째 접속
+    	if(todayCnt == 0) {//오늘 첫번째 접속
     		row = counterDao.insertCounter();
     		if(row == 1) {
     			System.out.println("count 성공");
@@ -44,12 +44,16 @@ public class MySessionListener implements HttpSessionListener {
     		}
     	}
     	
+    	se.getSession().getServletContext().setAttribute("todayCnt", todayCnt);
+    	
+    	//총 누적 접속 수
     	int sumByToday = counterDao.selectCounterSum();
     	se.getSession().getServletContext().setAttribute("sumByToday", sumByToday);
     	
     	 // 추가 디버깅 로그
-        System.out.println("현재 접속자 수 (세션 생성 후): " + se.getSession().getServletContext().getAttribute("currentCnt"));
-        System.out.println("오늘 총 접속자 수: " + se.getSession().getServletContext().getAttribute("sumByToday"));
+        System.out.println("현재 접속자 수 : " + se.getSession().getServletContext().getAttribute("currentCnt"));
+        System.out.println("총 접속자 수: " + se.getSession().getServletContext().getAttribute("sumByToday"));
+        System.out.println("오늘 총 접속자 수: " + se.getSession().getServletContext().getAttribute("todayCnt"));
     }
 
 

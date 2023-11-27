@@ -9,6 +9,8 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
+import vo.Counter;
+
 
 public class CounterDao {
 	
@@ -17,10 +19,10 @@ public class CounterDao {
 	public int selectCounterByToday() {
 		//SELECT * FROM counter
 		//WHERE cnt_date = CURRENT_DATE
-		int todayCounter = 0;
 		Connection conn = null;
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
+		int todayCnt=0;
 		
 		try {
 			// Tomcat context.xml 설정을 로드
@@ -37,10 +39,11 @@ public class CounterDao {
 			//쿼리문 디버깅
 			System.out.println("selectCounterByToday : " +stmt);
 			rs = stmt.executeQuery();
-			
 			 if (rs.next()) {
-		            todayCounter = rs.getInt("cnt_num");
-		            System.out.println("오늘 접속자 수 : " + todayCounter);
+		        todayCnt = rs.getInt("cnt_num");
+		        System.out.println("오늘 접속자 수 : " + todayCnt);
+		        }else {
+		        	todayCnt = 0;
 		        }
 			
 		} catch(Exception e) {
@@ -54,8 +57,7 @@ public class CounterDao {
 				e1.printStackTrace();
 			}
 		}
-		
-		return todayCounter;
+		return todayCnt;
 	}
 	
 	//selectCounterByToday 가 없을 때

@@ -63,8 +63,16 @@ public class ModifyNoticeController extends HttpServlet {
 		
 		notice.setMemberId(memberId);
 		
+		NoticeDao noticeDao = new NoticeDao();
+		int row = noticeDao.updateNotice(notice, password);
 		
+		if(row == 1) {
+			System.out.println("notice update 성공");
+		}else {
+			System.out.println("notice update 실패");
+		}
 		
+		response.sendRedirect(request.getContextPath()+"/member/memberHome");
 	}
 
 }
