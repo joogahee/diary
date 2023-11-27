@@ -17,7 +17,7 @@ public class LoginMemberController extends HttpServlet {
 	
 	// 로그인 폼
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("utf-8");
+
 		// session 유효성검사
 		HttpSession session = request.getSession();
 		if(session.getAttribute("loginMember")!=null) { 

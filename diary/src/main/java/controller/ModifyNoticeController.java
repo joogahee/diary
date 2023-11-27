@@ -48,8 +48,8 @@ public class ModifyNoticeController extends HttpServlet {
 		}
 		
 		//요청분석
-		String password = (String)request.getAttribute("password");
-		int noticeNo = (int)request.getAttribute("noticeNo");
+		String password = request.getParameter("password");
+		int noticeNo = Integer.parseInt(request.getParameter("noticeNo"));
 		String noticeTitle = request.getParameter("noticeTitle");
 		String noticeContent = request.getParameter("noticeContent");
 		
