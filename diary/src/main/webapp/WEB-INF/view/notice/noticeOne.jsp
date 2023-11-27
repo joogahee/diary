@@ -20,7 +20,11 @@
 			</tr>
 			<tr>
 				<th>내용</th>
-				<td>${notice.noticeContent}</td>
+				<td>
+					<textarea rows="3" cols="80" name="noticeContent" >
+							${notice.noticeContent}
+					</textarea>
+				</td>
 			</tr>
 			<tr>
 				<th>작성일</th>
