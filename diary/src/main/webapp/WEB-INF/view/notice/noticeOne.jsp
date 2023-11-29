@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -32,12 +33,15 @@
 				<td>${notice.createdate}</td>
 			</tr>
 		</table>
-		<a href="${pageContext.request.contextPath}/notice/removeNotice?noticeNo=${notice.noticeNo}">
-			삭제
-		</a>
-		<a href="${pageContext.request.contextPath}/notice/modifyNotice?noticeNo=${notice.noticeNo}">
-			수정
-		</a>
+		<!-- 로그인한 멤버의 레벨이 1일경우에만 수정, 삭제 가능 -->
+		<c:if test="${memberLevel == 1}">
+			<a href="${pageContext.request.contextPath}/notice/removeNotice?noticeNo=${notice.noticeNo}">
+				삭제
+			</a>
+			<a href="${pageContext.request.contextPath}/notice/modifyNotice?noticeNo=${notice.noticeNo}">
+				수정
+			</a>
+		</c:if>
 	</div>
 </body>
 </html>

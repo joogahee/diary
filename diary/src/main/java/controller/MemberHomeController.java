@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import dao.MemberDao;
 import dao.NoticeDao;
 import dao.ScheduleDao;
 import vo.Member;
@@ -72,6 +73,11 @@ public class MemberHomeController extends HttpServlet {
 		NoticeDao noticeDao = new NoticeDao();
 		List<Map<String,Object>> list2 = noticeDao.selectNoticeList();
 		
+		// 로그인한 아이디의 레벨 확인
+		MemberDao memberDao = new MemberDao();
+		int memberLevel = memberDao.levelMember(member.getMemberId());
+		System.out.println("로그인한 member의 level은 " + memberLevel + "입니다");
+		
 		// 넘기는데 2가지 방법 1.하나하나 보내는 것 , 2.map사용해서 랩핑해서 한번에 보내는 것
 		
 		request.setAttribute("targetY", targetY);
@@ -80,6 +86,8 @@ public class MemberHomeController extends HttpServlet {
 		request.setAttribute("beginBlank", beginBlank);
 		request.setAttribute("endBlank", endBlank);
 		request.setAttribute("totalTd", totalTd);
+		
+		request.setAttribute("memberLevel", memberLevel);
 		
 		request.setAttribute("list", list);	//schedule 모델
 		request.setAttribute("list2", list2);	//notice 모델

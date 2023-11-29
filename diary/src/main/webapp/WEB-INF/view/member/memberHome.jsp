@@ -39,7 +39,10 @@
 	<!-- 공지 -->
 	<div>
 		<h3>공지사항</h3>
-		<a href="${pageContext.request.contextPath}/notice/addNotice">공지추가</a>
+		<!-- 로그인한 멤버의 레벨이 1일경우에만 공지 추가 가능 -->
+		<c:if test="${memberLevel == 1}">
+			<a href="${pageContext.request.contextPath}/notice/addNotice">공지추가</a>
+		</c:if>
 		<div>
 			<table border="1">
 				<tr>

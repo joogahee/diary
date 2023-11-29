@@ -79,8 +79,8 @@ public class NoticeDao {
 				conn = ds.getConnection();
 				
 				String sql2 = """
-							INSERT INTO notice(notice_title, notice_content, member_id , createdate)
-										VALUE(?,?,?,NOW())
+							INSERT INTO notice(notice_title, notice_content, member_id )
+										VALUE(?,?,?)
 							""";
 				stmt = conn.prepareStatement(sql2);
 				stmt.setString(1, notice.getNoticeTitle());

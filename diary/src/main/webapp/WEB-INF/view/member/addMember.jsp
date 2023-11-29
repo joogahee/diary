@@ -27,6 +27,7 @@
 		</table>
 		<button id="addBtn">회원가입</button>
 	</form>
+	<a href="${pageContext.request.contextPath}/member/loginMember" class="button">로그인</a>
 </body>
 
 <script type="text/javascript">

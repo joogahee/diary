@@ -5,13 +5,13 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
+
 </head>
-<body>	
-	 <header>
-            <h2>Login</h2>
-        </header>
-        
-  	<div class="login">
+<body>
+	<header>
+		<h2>Login</h2>
+    </header>
+  	<div class="container">
     	<form id="loginForm" method="post" action="${pageContext.request.contextPath}/member/loginMember">
       		<div class="input-box">
       		<input type="text" placeholder="ID" id="memberId" name="memberId">
@@ -20,7 +20,7 @@
       		<input type="password" placeholder="PASSWORD" id="memberPw" name="memberPw">
       		</div>
       		<button>로그인</button>
-      		<p class="message">회원가입하기 <a id="loginBtn">로그인</a></p>
+      		<a href="${pageContext.request.contextPath}/member/addMember" class="button">회원가입</a>
     	</form>
   	</div>
 </body>
