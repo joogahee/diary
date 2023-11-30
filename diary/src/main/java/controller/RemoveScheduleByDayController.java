@@ -23,7 +23,8 @@ public class RemoveScheduleByDayController extends HttpServlet {
 			return;
 		}
 		
-		System.out.println(request.getParameter("scheduleNo")+"_________________");
+		//디버깅
+		System.out.println(request.getParameter("scheduleNo"));
 		System.out.println(request.getParameter("targetY"));
 		System.out.println(request.getParameter("targetM"));
 		System.out.println(request.getParameter("targetD"));
@@ -41,6 +42,7 @@ public class RemoveScheduleByDayController extends HttpServlet {
 		System.out.println(targetM + "<--targetM");
 		System.out.println(targetD + "<--targetD");
 		
+		//Dao요청
 		ScheduleDao scheduleDao = new ScheduleDao();
 		int row = scheduleDao.deleteScheduleByDay(member.getMemberId(), scheduleNo);
 		

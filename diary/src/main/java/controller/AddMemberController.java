@@ -19,7 +19,7 @@ public class AddMemberController extends HttpServlet {
        
 	//폼
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		//컨트롤러 실행 확인 디버깅
 		System.out.println("AddMemberController 실행");
 		
 		//session 유효성 검사
@@ -34,6 +34,7 @@ public class AddMemberController extends HttpServlet {
 		//view forward
 		request.getRequestDispatcher("/WEB-INF/view/member/addMember.jsp").forward(request, response);
 	}
+	
 	//액션
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
@@ -49,22 +50,26 @@ public class AddMemberController extends HttpServlet {
 		String memberPw = request.getParameter("memberPw");
 		System.out.println("회원가입: " + memberId + " <--memberId " + memberPw + " <--memberPw");
 		
+		//매개변수 paramMember 설정
 		Member paramMember = new Member();
 		paramMember.setMemberId(memberId);
 		paramMember.setMemberPw(memberPw);
 		
-		//매개값 디버깅
+		//매개변수 디버깅
 		System.out.println(paramMember.toString());
-
+		
+		//Dao 요청
 		MemberDao memberDao = new MemberDao();
 		int row = memberDao.insertMember(paramMember);
 		
+		//회원가입 성공 디버깅
 		if(row == 1) {
 			System.out.println("회원가입 성공");
 		}else {
 			System.out.println("회원가입 실패");
 		}
 		
+		//리다이렉트
 		response.sendRedirect(request.getContextPath()+"/member/loginMember");
 	}
 

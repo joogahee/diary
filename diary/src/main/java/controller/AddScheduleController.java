@@ -36,17 +36,20 @@ public class AddScheduleController extends HttpServlet {
 		System.out.println(date + "일정 추가 날짜");
 		System.out.println(memo + "일정 추가 내용");
 		
+		//session에서 로그인된 memberId 
 		Member member= (Member)session.getAttribute("loginMember");
 		String memberId = member.getMemberId();
 		
+		//매개변수 schedule 설정
 		Schedule schedule = new Schedule();
 		schedule.setScheduleMemo(memo);
 		schedule.setMemeberId(memberId);
 		schedule.setScheduleDate(date);
 		
-		//디버깅
+		//매개변수 디버깅
 		System.out.println(schedule);
 		
+		//Dao 요청
 		ScheduleDao scheduleDao = new ScheduleDao();
 		int row = scheduleDao.insertScheduleByDay(schedule);
 		

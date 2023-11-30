@@ -22,7 +22,7 @@ public class NoticeDao {
 			from member
 			WHERE member_id = ?
 			
-	 	2. INSERT INTO notice(notice_title, notice_content, memberid , createdate)
+	 	2. INSERT INTO notice(notice_title, notice_content, member_id , createdate)
 					VALUE(?,?,?,NOW())
 	 */
    public int insertNotice(Notice notice) {

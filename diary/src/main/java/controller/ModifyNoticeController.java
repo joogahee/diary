@@ -31,8 +31,10 @@ public class ModifyNoticeController extends HttpServlet {
 		Notice notice = new Notice();
 		NoticeDao noticeDao = new NoticeDao();
 		
+		//Dao 요청
 		notice = noticeDao.selectNoticeOne(noticeNo);
 		
+		//requet에 notice 저장 -> 폼에서 원래의 notice값 출력을 위해
 		request.setAttribute("notice", notice);
 		
 		//포워딩
@@ -53,25 +55,33 @@ public class ModifyNoticeController extends HttpServlet {
 		String noticeTitle = request.getParameter("noticeTitle");
 		String noticeContent = request.getParameter("noticeContent");
 		
+		//매개변수 notice 설정
 		Notice notice = new Notice();
 		notice.setNoticeNo(noticeNo);
 		notice.setNoticeTitle(noticeTitle);
 		notice.setNoticeContent(noticeContent);
 		
+		//session에서 로그인된 member 
 		Member member = (Member)session.getAttribute("loginMember");
+		
+		//session에서 로그인된 memberId 
 		String memberId = member.getMemberId();
 		
+		//로그인된 memberId를 notice객체에 세팅
 		notice.setMemberId(memberId);
 		
+		//Dao요청 
 		NoticeDao noticeDao = new NoticeDao();
 		int row = noticeDao.updateNotice(notice, password);
 		
+		//수정 성공 디버깅
 		if(row == 1) {
 			System.out.println("notice update 성공");
 		}else {
 			System.out.println("notice update 실패");
 		}
 		
+		//리다이렉트
 		response.sendRedirect(request.getContextPath()+"/member/memberHome");
 	}
 

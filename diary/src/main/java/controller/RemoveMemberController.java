@@ -23,7 +23,6 @@ public class RemoveMemberController extends HttpServlet {
 			return;
 		}
 		
-		
 		//view forward
 		request.getRequestDispatcher("/WEB-INF/view/member/removeMember.jsp").forward(request, response);
 		
@@ -42,14 +41,16 @@ public class RemoveMemberController extends HttpServlet {
 		String memberId = request.getParameter("memberId");
 		String memberPw = request.getParameter("memberPw");
 		System.out.println("회원탈퇴: " + memberId + " <--memberId " + memberPw + " <--memberPw");
-
+		
+		//매개변수 paramMember 세팅
 		Member paramMember = new Member();
 		paramMember.setMemberId(memberId);
 		paramMember.setMemberPw(memberPw);
 		
-		//매개값 디버깅
+		//매개변수 디버깅
 		System.out.println(paramMember.toString());
-
+		
+		//Dao 요청
 		MemberDao memberDao = new MemberDao();
 		int row = memberDao.deleteMember(paramMember);
 		

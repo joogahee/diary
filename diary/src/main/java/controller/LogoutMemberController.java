@@ -14,8 +14,11 @@ public class LogoutMemberController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//session 유효성 검사
 		HttpSession session = request.getSession();
+		
+		//세션 삭제
 		session.invalidate();
 		
+		//포워딩
 		request.getRequestDispatcher("/WEB-INF/view/member/loginMember.jsp").forward(request, response);
 		
 	}

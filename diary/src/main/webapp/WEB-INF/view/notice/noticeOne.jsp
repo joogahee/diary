@@ -7,10 +7,12 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/schedule.css">
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 </head>
 <body>
 	<div>
 		<h1>공지사항 상세보기</h1>
+		<!-- 공지사항 상세보기 폼 -->
 		<table border="1">
 			<tr>
 				<th>번호</th>
@@ -23,8 +25,7 @@
 			<tr>
 				<th>내용</th>
 				<td>
-					<textarea rows="3" cols="80" name="noticeContent" >
-							${notice.noticeContent}
+					<textarea rows="3" cols="80" name="noticeContent" >${notice.noticeContent}
 					</textarea>
 				</td>
 			</tr>
@@ -42,6 +43,48 @@
 				수정
 			</a>
 		</c:if>
+	</div>
+	<!-- 댓글 리스트 출력 -->
+	<h1>댓글</h1>
+	<div>
+		<table border="1">
+		<c:forEach var="c" items="${list}">
+			<tr>
+				<th>작성자</th>
+				<td>${c.memberId}</td>
+				<th>작성일</th>
+				<td>${c.createdate}</td>
+			</tr>
+			<tr>
+				<th>내용</th>
+				<td colspan="3">
+					<textarea rows="3" cols="80" name="noticeContent" >${c.commentContent}
+					</textarea>
+				</td>
+			</tr>
+			</c:forEach>
+		</table>
+	</div>
+	<!-- 댓글 작성 폼 -->
+	<h1>댓글 작성</h1>
+	<div>
+		<form method="post" action="${pageContext.request.contextPath}/notice/comment">
+			<input type="hidden" name="noticeNo" value="${notice.noticeNo}">
+			<table border="1">
+			<tr>
+				<th>내용</th>
+				<td>
+					<textarea rows="3" cols="80" name="commentContent"></textarea>
+				</td>
+			</tr>
+			<tr>
+				<label>
+    				<input type="checkbox" name="secret" value="true"> 비밀글
+				</label>
+			</tr>
+		</table>
+		<button type="submit">댓글등록</button>
+		</form>
 	</div>
 </body>
 </html>

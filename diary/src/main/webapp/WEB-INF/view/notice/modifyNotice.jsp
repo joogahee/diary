@@ -22,9 +22,7 @@
 				<tr>
 					<th>내용</th>
 					<td>
-						<textarea rows="3" cols="80" name="noticeContent" >
-							${notice.noticeContent}
-						</textarea>
+						<textarea rows="3" cols="80" name="noticeContent" >${notice.noticeContent}</textarea>
 					</td>
 				</tr>	
 				<tr>

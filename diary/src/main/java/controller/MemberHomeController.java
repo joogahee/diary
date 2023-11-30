@@ -62,11 +62,13 @@ public class MemberHomeController extends HttpServlet {
 		//schedule 모델
 		ScheduleDao scheduleDao = new ScheduleDao();
 		
+		//session에서 로그인된 member 
 		Member member = (Member)session.getAttribute("loginMember");
 		
 		//param: String 로그인아이디, int 출력연도, int 출력월
 		List<Map<String,Object>> list = scheduleDao.selectScheduleByMonth(member.getMemberId(), targetY, targetM+1);
 		
+		//list.size 디버깅
 		System.out.println(list.size() + " <--list.size");
 		
 		//공지 출력위한 모델값
@@ -78,8 +80,9 @@ public class MemberHomeController extends HttpServlet {
 		int memberLevel = memberDao.levelMember(member.getMemberId());
 		System.out.println("로그인한 member의 level은 " + memberLevel + "입니다");
 		
-		// 넘기는데 2가지 방법 1.하나하나 보내는 것 , 2.map사용해서 랩핑해서 한번에 보내는 것
 		
+		// 넘기는데 2가지 방법 1.하나하나 보내는 것 , 2.map사용해서 랩핑해서 한번에 보내는 것
+		// 1번으로 보내주기
 		request.setAttribute("targetY", targetY);
 		request.setAttribute("targetM", targetM);
 		request.setAttribute("lastD", lastD);
@@ -91,7 +94,8 @@ public class MemberHomeController extends HttpServlet {
 		
 		request.setAttribute("list", list);	//schedule 모델
 		request.setAttribute("list2", list2);	//notice 모델
-								
+		
+		//포워딩
 		request.getRequestDispatcher("/WEB-INF/view/member/memberHome.jsp").forward(request, response);
 	}
 

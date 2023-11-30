@@ -26,6 +26,7 @@ public class removeNoticeController extends HttpServlet {
 		//요청분석
 		int noticeNo = Integer.parseInt(request.getParameter("noticeNo"));
 		
+		//삭제폼에 notice출력을 위해
 		request.setAttribute("noticeNo", noticeNo);
 		
 		//포워딩
