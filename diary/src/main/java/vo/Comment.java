@@ -5,9 +5,8 @@ public class Comment {
 	private int noticeNo;
 	private String memberId;
 	private String commentContent;
-	private boolean isSecret;
+	private int isSecret;
 	private String createdate;
-	
 	public int getCommentNo() {
 		return commentNo;
 	}
@@ -32,10 +31,10 @@ public class Comment {
 	public void setCommentContent(String commentContent) {
 		this.commentContent = commentContent;
 	}
-	public boolean isSecret() {
+	public int getIsSecret() {
 		return isSecret;
 	}
-	public void setSecret(boolean isSecret) {
+	public void setIsSecret(int isSecret) {
 		this.isSecret = isSecret;
 	}
 	public String getCreatedate() {
@@ -44,13 +43,11 @@ public class Comment {
 	public void setCreatedate(String createdate) {
 		this.createdate = createdate;
 	}
-	
 	@Override
 	public String toString() {
 		return "Comment [commentNo=" + commentNo + ", noticeNo=" + noticeNo + ", memberId=" + memberId
 				+ ", commentContent=" + commentContent + ", isSecret=" + isSecret + ", createdate=" + createdate + "]";
 	}
-	
 	
 	
 	

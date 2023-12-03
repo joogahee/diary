@@ -28,11 +28,16 @@ public class AddCommentController extends HttpServlet {
 		//요청분석
 		String commentContent = request.getParameter("commentContent");
 		int noticeNo = Integer.parseInt(request.getParameter("noticeNo"));
-		String secretParam = request.getParameter("secret");
-
-		// "true" 문자열이면 true, null이면 false로 처리
-		boolean secret = "true".equalsIgnoreCase(secretParam);
+		String paramSecret = request.getParameter("secret");
+		int secret = 0;
 		
+		//secret이 null이 아니면 1 
+		if(paramSecret != null) {
+			secret = Integer.parseInt(paramSecret);
+		}
+		
+		System.out.println(secret + " 1->비밀글 0->전체공개");
+
 		//요청 디버깅
 		System.out.println(commentContent + " <--commentContent " + noticeNo + " <--noticeNo " + secret + " <--secret ");
 		
@@ -43,7 +48,7 @@ public class AddCommentController extends HttpServlet {
 		//매개변수 comment 설정
 		Comment comment = new Comment();
 		comment.setCommentContent(commentContent);
-		comment.setSecret(secret);
+		comment.setIsSecret(secret);
 		comment.setMemberId(memberId);
 		comment.setNoticeNo(noticeNo);
 		

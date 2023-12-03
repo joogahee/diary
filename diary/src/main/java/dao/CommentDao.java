@@ -41,7 +41,7 @@ public class CommentDao {
 			stmt.setInt(1, comment.getNoticeNo());
 			stmt.setString(2, comment.getMemberId());
 			stmt.setString(3, comment.getCommentContent());
-			stmt.setBoolean(4, comment.isSecret());
+			stmt.setInt(4, comment.getIsSecret());
 
 			//쿼리문 디버깅
 			System.out.println("insertScheduleByDay : " +stmt);
@@ -201,7 +201,7 @@ public class CommentDao {
 				member_id memberId,
 				createdate,
   			CASE
-    			WHEN is_secret = false OR member_id = ? THEN comment_content
+    			WHEN is_secret = 0 OR member_id = ? THEN comment_content
     			ELSE '비밀글입니다.'
   				END AS commentContent
 		FROM comment
@@ -251,8 +251,8 @@ public class CommentDao {
 									member_id memberId,
 									createdate,
 								CASE
-									WHEN is_secret = false OR member_id = ? THEN comment_content
-									ELSE '비밀글입니다.'
+									WHEN is_secret = 0 OR member_id = ? THEN comment_content
+									ELSE '&#x1F512; 비밀글입니다.'
 									END AS commentContent
 							FROM comment
 							WHERE notice_no = ?

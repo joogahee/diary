@@ -94,8 +94,8 @@
 				</td>
 			</tr>
 			<tr>
-				<label>
-    				<input type="checkbox" name="secret" value="true"> 비밀글
+				<label for="secretCheckbox">
+    				<input type="checkbox" id="secretCheckbox" name="secret" value="1"> 비밀글
 				</label>
 			</tr>
 		</table>
