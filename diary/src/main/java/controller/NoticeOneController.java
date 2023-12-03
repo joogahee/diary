@@ -56,8 +56,10 @@ public class NoticeOneController extends HttpServlet {
 		
 		//noticeOne 출력
 		request.setAttribute("notice", notice); //notice 모델
+		request.setAttribute("loginMember", loginMember);//로그인한 계정
 		request.setAttribute("memberLevel", memberLevel); 
 		request.setAttribute("list", list);	//comment 모델
+		
 		//포워딩
 		request.getRequestDispatcher("/WEB-INF/view/notice/noticeOne.jsp").forward(request, response);
 	}

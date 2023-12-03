@@ -62,6 +62,22 @@
 					</textarea>
 				</td>
 			</tr>
+			<tr>
+				<td>
+					<!-- 로그인한 멤버의 레벨이 1 ->모든 댓글 삭제 가능 / 로그인계정과 작성자가 일치 -> 삭제 가능 -->
+					<c:if test="${memberLevel == 1 || c.memberId == loginMember.memberId}">
+						<a href="${pageContext.request.contextPath}/comment/removeComment?commentNo=${c.commentNo}">
+							삭제
+						</a>
+					</c:if>
+					<!--로그인계정과 작성자가 일치 -> 수정 가능  -->
+					<c:if test="${c.memberId == loginMember.memberId}">
+						<a href="${pageContext.request.contextPath}/comment/modifyComment?commentNo=${c.commentNo}">
+							수정
+						</a>
+					</c:if>
+				</td>
+			</tr>
 			</c:forEach>
 		</table>
 	</div>

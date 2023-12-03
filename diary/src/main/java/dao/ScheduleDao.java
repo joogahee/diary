@@ -299,7 +299,7 @@ public class ScheduleDao {
 			stmt.setInt(1, scheduleNo);
 
 			//쿼리문 디버깅
-			System.out.println("selectScheduleByDay : " +stmt);
+			System.out.println("selectScheduleOne : " +stmt);
 			rs = stmt.executeQuery();
 			  while(rs.next()) {
 		           schedule.setMemeberId(rs.getNString("memberId"));
@@ -348,7 +348,7 @@ public class ScheduleDao {
 			stmt.setString(1,schedule.getScheduleMemo() );
 			stmt.setInt(2,schedule.getScheduleNo());
 
-			System.out.println("ModifyPwQuery : " +stmt);
+			System.out.println("updateSchedule : " +stmt);
 			row = stmt.executeUpdate();
 			
 		} catch(Exception e) {

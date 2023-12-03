@@ -201,9 +201,7 @@ public class NoticeDao {
 		}
 		
 		return row;	   
-	   	   
-	   
-     
+	    
    }
    
    // member_level > 0 and pw일치 공지 수정
@@ -409,7 +407,7 @@ public class NoticeDao {
 						""";
 			stmt = conn.prepareStatement(sql);
 			//쿼리문 디버깅
-			System.out.println("selectNotice : " +stmt);
+			System.out.println("selectNoticeList : " +stmt);
 			rs = stmt.executeQuery();
 			
 			while (rs.next()) {
