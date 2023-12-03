@@ -260,4 +260,111 @@ public class ScheduleDao {
 		return list;
 		}
 	
+
+	//스케줄 출력
+	/*
+	   SELECT 
+			member_id memberId,
+			schedule_date scheduleDate,
+			schedule_memo scheduleMemo,
+			createdate 
+		FROM schedule
+		WHERE schedule_no = ?
+	 */
+	public Schedule selectScheduleOne(int scheduleNo){
+		Schedule schedule = new Schedule();
+		
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		try {
+			// Tomcat context.xml 설정을 로드
+			Context context = new InitialContext();
+			// context.xml에서 커넥션풀 객체 로드
+			DataSource ds = (DataSource)context.lookup("java:comp/env/jdbc/diary");
+			conn = ds.getConnection();
+			// conn 디버깅
+			System.out.println(conn +" <-- conn");
+			
+			String sql = """
+							   SELECT 
+									member_id memberId,
+									schedule_date scheduleDate,
+									schedule_memo scheduleMemo,
+									createdate 
+								FROM schedule
+								WHERE schedule_no = ?
+						""";
+			stmt = conn.prepareStatement(sql);
+			stmt.setInt(1, scheduleNo);
+
+			//쿼리문 디버깅
+			System.out.println("selectScheduleByDay : " +stmt);
+			rs = stmt.executeQuery();
+			  while(rs.next()) {
+		           schedule.setMemeberId(rs.getNString("memberId"));
+		           schedule.setScheduleDate(rs.getString("scheduleDate"));
+		           schedule.setScheduleMemo(rs.getString("scheduleMemo"));
+		           schedule.setCreatedate("createdate");
+		         }
+			  schedule.setScheduleNo(scheduleNo);
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				rs.close();
+				stmt.close();
+				conn.close();
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
+		}
+		
+		return schedule;
+		}
+
+
+	//일정 수정
+	/*
+	  	UPDATE schedule SET schedule_memo = ? WHERE schedule_no = ? 
+	 */
+	public int updateSchedule(Schedule schedule) {
+		int row = 0;
+		//커넥션풀
+		//자원해제를 위해서 try...catch문 밖에 생성
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		try {
+			// Tomcat context.xml 설정을 로드
+			Context context = new InitialContext();
+			// context.xml에서 커넥션풀 객체 로드
+			DataSource ds = (DataSource)context.lookup("java:comp/env/jdbc/diary");
+			conn = ds.getConnection();
+			// conn 디버깅
+			System.out.println(conn +" <-- conn");
+			String sql = "UPDATE schedule SET schedule_memo = ? WHERE schedule_no = ? ";
+			stmt = conn.prepareStatement(sql);
+			stmt.setString(1,schedule.getScheduleMemo() );
+			stmt.setInt(2,schedule.getScheduleNo());
+
+			System.out.println("ModifyPwQuery : " +stmt);
+			row = stmt.executeUpdate();
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				stmt.close();
+				conn.close();
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
+		}
+		
+		return row;
+	}
+	
+
+	
 }

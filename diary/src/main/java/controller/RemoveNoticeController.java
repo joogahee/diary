@@ -13,7 +13,7 @@ import dao.NoticeDao;
 import vo.Member;
 
 @WebServlet("/notice/removeNotice")
-public class removeNoticeController extends HttpServlet {
+public class RemoveNoticeController extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//session 유효성 검사
@@ -65,7 +65,7 @@ public class removeNoticeController extends HttpServlet {
 		}
 		
 		//리다이렉트 
-		response.sendRedirect(request.getContextPath()+"/member/memberHome");
+		response.sendRedirect(request.getContextPath()+"/notice/noticeOne?noticeNo="+noticeNo);
 		
 	}
 

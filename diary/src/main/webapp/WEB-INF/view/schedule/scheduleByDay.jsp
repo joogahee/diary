@@ -32,8 +32,13 @@
 						<td>${s.memo}</td>
 						<td>${s.createdate}</td>
 						<td>
-							<a href="?scheduleNo=${s.scheduleNo }">수정
-							</a>
+							<form method="get" action="${pageContext.request.contextPath}/schedule/modifySchedule">
+								<input type="hidden" name="targetY" value="${targetY}">
+								<input type="hidden" name="targetM" value="${targetM}">
+								<input type="hidden" name="targetD" value="${targetD}">
+								<input type="hidden" name="scheduleNo" value="${s.scheduleNo }">
+								<button type="submit">수정</button>
+							</form>
 						</td>
 						<td>
 							<form method="post" action="${pageContext.request.contextPath}/schedule/removeScheduleByDay">

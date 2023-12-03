@@ -37,14 +37,7 @@ public class ScheduleByDayController extends HttpServlet {
 			targetD = Integer.parseInt(request.getParameter("targetD"));
 		}
 		
-		//속성에 값이 존재한다면
-		if(request.getAttribute("targetY") != null && request.getAttribute("targetM") != null && request.getAttribute("targetD") != null) {
-			System.out.println("속성 값 존재");
-			targetY = (int)request.getAttribute("targetY");
-			targetM = (int)request.getAttribute("targetM");
-			targetD = (int)request.getAttribute("targetD");
-		}
-		
+	
 		System.out.println(targetY + "<--targetY2");
 		System.out.println(targetM + "<--targetM2");
 		System.out.println(targetD + "<--targetD2");
@@ -72,25 +65,5 @@ public class ScheduleByDayController extends HttpServlet {
 		
 
 	}
-	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//삭제나 수정 후 다시 페이지를 보여줄 때 속성값이 존재한다면 받아준다
-		if(request.getAttribute("targetY") != null && request.getAttribute("targetM") != null && request.getAttribute("targetD") != null) {
-			System.out.println("속성 값 존재");
-			int targetY = (int)request.getAttribute("targetY");
-			int targetM = (int)request.getAttribute("targetM");
-			int targetD = (int)request.getAttribute("targetD");
-			
-			request.setAttribute("targetY", targetY);
-			request.setAttribute("targetM", targetM);
-			request.setAttribute("targetD", targetD);
-			
-			request.getRequestDispatcher("/schedule/scheduleByDay").forward(request, response);
-			
-		}
-		
-		
-	}
-
 
 }

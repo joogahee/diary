@@ -60,7 +60,7 @@ public class RemoveScheduleByDayController extends HttpServlet {
 		
 		//일정 삭제 후 일정페이지로 리다이렉트 
 		//response.sendRedirect(request.getContextPath()+"/schedule/scheduleByDay");
-		response.sendRedirect(request.getContextPath()+"/member/memberHome");
+		response.sendRedirect(request.getContextPath()+"/schedule/scheduleByDay?targetY="+targetY+"&targetM="+targetM+"&targetD="+targetD);
 
 	}
 

@@ -26,11 +26,11 @@ public class AddScheduleController extends HttpServlet {
 		}
 		
 		//요청분석
-		int year = Integer.parseInt(request.getParameter("targetY"));
-		int month = Integer.parseInt(request.getParameter("targetM"));
-		int day = Integer.parseInt(request.getParameter("targetD"));
+		int targetY = Integer.parseInt(request.getParameter("targetY"));
+		int targetM = Integer.parseInt(request.getParameter("targetM"));
+		int targetD = Integer.parseInt(request.getParameter("targetD"));
 		String memo = request.getParameter("scheduleMemo");
-		String date = year + "-" + month + "-" + day;
+		String date = targetY + "-" + targetM + "-" + targetD;
 		
 		//디버깅
 		System.out.println(date + "일정 추가 날짜");
@@ -61,7 +61,7 @@ public class AddScheduleController extends HttpServlet {
 		}
 		
 		//리다이렉트
-		response.sendRedirect(request.getContextPath()+"/member/memberHome");
+		response.sendRedirect(request.getContextPath()+"/schedule/scheduleByDay?targetY="+targetY+"&targetM="+targetM+"&targetD="+targetD);
 		
 	}
 

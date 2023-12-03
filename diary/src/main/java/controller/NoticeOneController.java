@@ -20,7 +20,7 @@ import vo.Member;
 import vo.Notice;
 
 @WebServlet("/notice/noticeOne")
-public class noticeOneController extends HttpServlet {
+public class NoticeOneController extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//session 유효성 검사
@@ -55,8 +55,8 @@ public class noticeOneController extends HttpServlet {
 		List<Comment> list = commentDao.selectCommentList(map);
 		
 		//noticeOne 출력
-		request.setAttribute("notice", notice);
-		request.setAttribute("memberLevel", memberLevel);
+		request.setAttribute("notice", notice); //notice 모델
+		request.setAttribute("memberLevel", memberLevel); 
 		request.setAttribute("list", list);	//comment 모델
 		//포워딩
 		request.getRequestDispatcher("/WEB-INF/view/notice/noticeOne.jsp").forward(request, response);
