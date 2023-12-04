@@ -177,11 +177,6 @@ public class CommentDao {
    }
    
    
-   // 글쓴이
-   public int updateComment(Comment comment) {
-      return 0;
-   }
-   
    //comment List 출력
    /*
     	1. memberLevel이 1일경우 모든 comment가 출력
@@ -200,6 +195,7 @@ public class CommentDao {
 				comment_no commentNo,
 				member_id memberId,
 				createdate,
+				is_secret isSecret,
   			CASE
     			WHEN is_secret = 0 OR member_id = ? THEN comment_content
     			ELSE '비밀글입니다.'
@@ -250,6 +246,7 @@ public class CommentDao {
 									comment_no commentNo,
 									member_id memberId,
 									createdate,
+									is_secret isSecret,
 								CASE
 									WHEN is_secret = 0 OR member_id = ? THEN comment_content
 									ELSE '&#x1F512; 비밀글입니다.'
@@ -271,6 +268,7 @@ public class CommentDao {
 		           	comment.setMemberId(rs.getString("memberId"));
 		           	comment.setCommentContent(rs.getString("commentContent"));
 		           	comment.setCreatedate(rs.getString("createdate"));
+		           	comment.setIsSecret(rs.getInt("isSecret"));
 		            list.add(comment);
 		         }	
 			
@@ -295,6 +293,7 @@ public class CommentDao {
 			c.notice_no noticeNo,
 			c.member_id memberId,
 			c.comment_content commentContent,
+			c.comment_no commentNo,
 			c.is_secret isSecret,
 			c.createdate createdate,
 			n.notice_title noticeTitle,
@@ -321,6 +320,7 @@ public class CommentDao {
 								c.comment_no commentNo,
 								c.member_id memberId,
 								c.comment_content commentContent,
+								c.comment_no commentNo,
 								c.is_secret isSecret,
 								c.createdate createdate,
 								n.notice_title noticeTitle,
@@ -361,4 +361,114 @@ public class CommentDao {
 	      
       return map;
    }
+
+
+   // 작성자 본인만 comment 수정가능
+   /*
+	1. SELECT 
+			c.comment_no commentNo
+		FROM comment c INNER JOIN member m
+		ON m.member_id = c.member_id
+		WHERE c.comment_no = ?
+		AND c.member_id =?
+		AND c.notice_no =?
+		AND m.member_pw = PASSWORD(?)
+	
+	2. UPDATE comment
+		SET comment_content = ?,
+		is_secret = ?
+		WHERE comment_no = ?
+*/
+   public int updateComment(Map<String,Object> map) {
+	   //요청성공 디버깅 변수
+	   int row = 0;
+	   //수정할 댓글 번호
+	   int updateCommentNo = 0;
+	   
+	   Connection conn = null;
+	   PreparedStatement stmt = null;
+	   ResultSet rs = null;
+		
+		try {
+			// Tomcat context.xml 설정을 로드
+			Context context = new InitialContext();
+			// context.xml에서 커넥션풀 객체 로드
+			DataSource ds = (DataSource)context.lookup("java:comp/env/jdbc/diary");
+			conn = ds.getConnection();
+			
+			String sql1 = """
+							SELECT c.comment_no commentNo
+								FROM comment c INNER JOIN member m
+								ON m.member_id = c.member_id
+								WHERE c.comment_no = ?
+								AND c.member_id =?
+								AND c.notice_no =?
+								AND m.member_pw = PASSWORD(?)
+						""";
+			stmt = conn.prepareStatement(sql1);
+			stmt.setInt(1, (int)map.get("commentNo"));
+			stmt.setString(2, (String)map.get("memberId"));
+			stmt.setInt(3, (int)map.get("noticeNo"));
+			stmt.setString(4, (String)map.get("password"));
+			//쿼리문 디버깅
+			System.out.println("수정할 댓글 번호 select 쿼리 : " +stmt);
+			rs = stmt.executeQuery();
+			
+			if(rs.next()) {
+				updateCommentNo = rs.getInt(1);
+				System.out.println("수정할 댓글 번호 : " + updateCommentNo);
+			}
+
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				stmt.close();
+				conn.close();
+				if (rs != null) {
+				    rs.close();
+				}
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
+		}
+		
+		if(updateCommentNo != 0) {
+			try {
+				// Tomcat context.xml 설정을 로드
+				Context context = new InitialContext();
+				// context.xml에서 커넥션풀 객체 로드
+				DataSource ds = (DataSource)context.lookup("java:comp/env/jdbc/diary");
+				conn = ds.getConnection();
+				
+				String sql2 = """
+						UPDATE comment
+							SET comment_content = ?,
+							is_secret = ?
+							WHERE comment_no = ?
+							""";
+				stmt = conn.prepareStatement(sql2);
+				stmt.setString(1, (String)map.get("commentContent"));
+				stmt.setInt(2, (int)map.get("secret"));
+				stmt.setInt(3, (int)map.get("commentNo"));
+				
+				//쿼리문 디버깅
+				System.out.println("updateNotice : " +stmt);
+				row = stmt.executeUpdate();
+	
+			} catch(Exception e) {
+				e.printStackTrace();
+			} finally {
+				try {
+					stmt.close();
+					conn.close();
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
+			}
+		}
+		
+		return row;	   
+   }
+   
 }

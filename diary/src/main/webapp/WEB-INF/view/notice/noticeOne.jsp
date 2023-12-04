@@ -50,7 +50,7 @@
 		<table border="1">
 		<c:forEach var="c" items="${list}">
 			<tr>
-				<th>작성자</th>
+				<th>작성자 ${c.isSecret}</th>
 				<td>${c.memberId}</td>
 				<th>작성일</th>
 				<td>${c.createdate}</td>

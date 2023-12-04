@@ -33,7 +33,7 @@
 			</tr>
 			<tr>
 				<th>´ñ±Û</th>
-				<td><textarea rows="3" cols="80" name="noticeContent">${map.commentContent }
+				<td><textarea rows="3" cols="80" name="commentContent">${map.commentContent }
 					</textarea>
 				</td>
 			</tr>
