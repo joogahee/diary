@@ -6,45 +6,36 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/schedule.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/diary.css">
 </head>
 <body>
-
-	<h2>안녕하세요! ${loginMember.memberId} 님</h2>
-	<!--  
+	<!-- menu -->
+	<div id="menu">
+    <c:import url="/WEB-INF/view/inc/menu.jsp" />
+	</div>
+		<h2>${loginMember.memberId}님 환영합니다.</h2>
+		
+	<div>
+	<p class="right-align">
 	<c:if test="${not empty applicationScope.currentCnt}">
-    	<h3>현재 접속자 수: <c:out value="${applicationScope.currentCnt}" /> 명</h3>
+    	현재 접속자 수: <c:out value="${applicationScope.currentCnt}" /> 명/
 	</c:if>
 
 	<c:if test="${not empty applicationScope.sumByToday}">
-   	 	<h3>총 접속자 수: <c:out value="${applicationScope.sumByToday}" /> 명</h3>
+   	 	총 접속자 수: <c:out value="${applicationScope.sumByToday}" /> 명/
 	</c:if>
 	
 	<c:if test="${not empty applicationScope.todayCnt}">
-   	 	<h3>오늘 총 접속자 수: <c:out value="${applicationScope.todayCnt}" /> 명</h3>
+   	 	오늘 총 접속자 수: <c:out value="${applicationScope.todayCnt}" /> 명
 	</c:if>
-	-->
-	
-	<div>
-		<p><a class="button" href="${pageContext.request.contextPath}/member/logoutMember">로그아웃</a>
-		<!-- LogoutMemberController.doGet() --[session invalidate]-- /login/Member-->
-		<a class="button" href="${pageContext.request.contextPath}/member/modifyPwMember">비밀번호수정</a>
-		<!-- 수정폼 ModifyMemberController.doGet() -- modifyMemberPw.jsp /member/loginMember-->
-		<!-- 수정액션 ModifyMemberController.doPost() [session invalidate]-- modifyMember.jsp /member/loginMember -->
-		<a class="button" href="${pageContext.request.contextPath}/member/removeMember">회원탈퇴</a></p>
-		<!-- 탈퇴폼 RemoveMemberController.doGet() -- removeMember.jsp /member/loginMember-->
-		<!-- 탈퇴액션 RemoveMemberController.doPost() [session invalidate]-- removeMember.jsp /member/loginMember -->
+	</p>
 	</div>
 	
 	<!-- 공지 -->
 	<div>
 		<h3>공지사항</h3>
-		<!-- 로그인한 멤버의 레벨이 1일경우에만 공지 추가 가능 -->
-		<c:if test="${memberLevel == 1}">
-			<a href="${pageContext.request.contextPath}/notice/addNotice">공지추가</a>
-		</c:if>
 		<div>
-			<table border="1">
+			<table class="centered-table">
 				<tr>
 					<th>번호</th>
 					<th>제목</th>
@@ -61,17 +52,25 @@
 						<td>${n.createdate}</td>
 					</tr>
 				</c:forEach>
+			<!-- 로그인한 멤버의 레벨이 1일경우에만 공지 추가 가능 -->
+			<c:if test="${memberLevel == 1}">
+				<a class="button add" href="${pageContext.request.contextPath}/notice/addNotice">공지추가</a>
+			</c:if>
 			</table>
 		</div>
 	</div>
 	
 	<!-- 달력 -->
 	<div class="container">
-		<h1>${targetY }년 ${targetM+1}월 </h1>
+		<h1 class="h1">
+			<a class="button one" href="${pageContext.request.contextPath}/member/memberHome?targetY=${targetY}&targetM=${targetM-1}">이전달</a>
+				${targetY }년 ${targetM+1}월 
+			<a class="button one" href="${pageContext.request.contextPath}/member/memberHome?targetY=${targetY}&targetM=${targetM+1}">다음달</a>	
+		</h1>
 		
 		<div>
-			<a class="button2" href="${pageContext.request.contextPath}/member/memberHome?targetY=${targetY}&targetM=${targetM-1}">이전달</a>
-			<a class="button2" href="${pageContext.request.contextPath}/member/memberHome?targetY=${targetY}&targetM=${targetM+1}">다음달</a>		
+			
+				
 		</div>
 	</div>
 	
@@ -79,7 +78,7 @@
 		
 	<div>
 		<div>
-			<table border="1">
+			<table class="calendar-table">
 				<tr>
 					<th>일</th>
 					<th>월</th>
@@ -91,7 +90,7 @@
 				</tr>
 				<tr>
 					<c:forEach var="i" begin="1" end="${totalTd}" step="1">
-						<c:set var="d" value="${i - beginBlank}"></c:set>
+						<c:set var="d" value="${i - beginBlank}">
 						<td>
 							<c:if test="${ d < 1 || d > lastD }">
 								&nbsp;
@@ -103,18 +102,21 @@
 								<div>
 									<c:forEach var="m" items="${list}">
 										<c:if test="${m.scheduleDay == (d)}">
-											<div>${m.cnt}</div>
+											<div>
+												<c:if test="${m.cnt} > 0"></c:if>
+													${m.cnt}
+											</div>
 											<div>${m.memo}</div>
 										</c:if>
 									</c:forEach>
 								</div>
 									
 							</c:if>
-							
 							<c:if test="${i<totalTd && i%7==0 }">
 								</tr><tr>
 							</c:if>
 						</td>
+				</c:set>
 					</c:forEach>
 				</tr>
 			</table>

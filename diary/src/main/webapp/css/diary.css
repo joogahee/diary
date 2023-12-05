@@ -1,0 +1,266 @@
+/* 인코딩 */
+@charset "UTF-8";
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+
+.container {
+  margin: 0 auto;
+  max-width: 1200px;
+  padding: 20px;
+}
+
+/* 메뉴바 */
+.menu {
+  list-style-type: none;     /* 목록 스타일 제거 */
+  margin: 100;                 /* 바깥쪽 여백 제거 */
+  padding: 0;                /* 내부 여백 제거 */
+  background-color: #8FBC8F; /* 배경 색상 설정 */
+  overflow: hidden;          /* 자식 요소들을 감출 때 사용하는 오버플로 속성 */
+}
+
+/* 메뉴 항목 스타일링 */
+.menu ul li {
+  float: left;               /* 메뉴 항목을 가로로 배치 */
+  list-style: none;
+}
+
+.menu ul li a {
+  display: block;            /* 링크를 블록 수준 요소로 만들어 전체 영역에 링크를 적용 */
+  color: white;              /* 글자 색상 설정 */
+  text-align: center;        /* 텍스트 가운데 정렬 */
+  padding: 14px 16px;        /* 내부 여백 설정 (상하 14px, 좌우 16px) */
+  text-decoration: none;     /* 밑줄 제거 */
+}
+
+/* 호버 효과 */
+.menu ul li a:hover {
+  background-color: #098931;    /* 호버 시 배경 색상 변경 */
+}
+
+
+/* 로고 */
+.logo {
+    float: left;  /* 로고를 왼쪽으로 배치 */
+    margin-right: 25px;  /* 로고와 메뉴 사이의 간격을 설정 */
+}
+
+.logo-text {
+    font-size: 36px;  /* 로고 텍스트의 글자 크기를 설정 */
+    font-weight: bold;  /* 로고 텍스트를 굵게 표시 */
+    color: #F0FFF0;  /* 로고 텍스트의 글자 색상을 설정 */
+    text-decoration: none;  /* 로고 텍스트에 밑줄을 제거 */
+    line-height: 70px;  /* 로고 텍스트의 높이를 설정하여 상하 중앙 정렬 */
+    text-align: center;  /* 로고 텍스트를 가운데 정렬 */
+}
+
+/* 로그인 창 */
+.login-container {
+    width: 300px;              /* 로그인 창의 너비를 설정합니다. */
+    margin: auto;              /* 가운데 정렬을 위해 좌우 여백을 자동으로 조절합니다. */
+    margin-top: 50px;          /* 로그인 창과 상단 간의 여백을 설정합니다. */
+    padding: 20px;             /* 로그인 창 내부 여백을 설정합니다. */
+    background-color: #F0FFF0; /* 로그인 창 배경 색상을 설정합니다. */
+    border: 1px solid #A9A9A9;    /* 로그인 창 테두리를 설정합니다. */
+    border-radius: 5px;        /* 로그인 창 모서리를 둥글게 처리합니다. */
+}
+
+.login-title {
+    text-align: center;        /* 로그인 제목을 가운데 정렬합니다. */
+    font-size: 24px;           /* 로그인 제목의 글자 크기를 설정합니다. */
+    margin-bottom: 20px;       /* 로그인 제목과 입력 폼 간의 여백을 설정합니다. */
+}
+
+.login-form {
+    display: flex;             /* 입력 폼을 가로로 배열합니다. */
+    flex-direction: column;    /* 입력 폼 요소들을 세로로 배열합니다. */
+}
+
+.login-input {
+    padding: 10px;             /* 입력 필드의 내부 여백을 설정합니다. */
+    margin-bottom: 15px;       /* 입력 필드 간의 여백을 설정합니다. */
+}
+
+.login-button {
+    background-color: #696969; /* 로그인 버튼의 배경 색상을 설정합니다. */
+    color: white;              /* 로그인 버튼의 글자 색상을 설정합니다. */
+    padding: 10px;             /* 로그인 버튼의 내부 여백을 설정합니다. */
+    border: none;              /* 로그인 버튼의 테두리를 제거합니다. */
+    border-radius: 5px;        /* 로그인 버튼 모서리를 둥글게 처리합니다. */
+    cursor: pointer;           /* 마우스 커서를 포인터로 변경합니다. */
+}
+
+.login-button:hover {
+    background-color: #000000; /* 호버 시 로그인 버튼의 배경 색상을 변경합니다. */
+}
+
+.registration-button  {
+    display: inline-block;     /* 인라인 블록 요소로 설정합니다. */
+    background-color: #696969; /* 로그인 버튼의 배경 색상을 설정합니다. */
+    color: white;              /* 로그인 버튼의 글자 색상을 설정합니다. */
+    padding: 10px;             /* 로그인 버튼의 내부 여백을 설정합니다. */
+    border: none;              /* 로그인 버튼의 테두리를 제거합니다. */
+    border-radius: 5px;        /* 로그인 버튼 모서리를 둥글게 처리합니다. */
+    cursor: pointer;           /* 마우스 커서를 포인터로 변경합니다. */
+    text-decoration: none;     /* 밑줄 제거 */
+}
+
+.registration-button:hover {
+    background-color: #000000; /* 호버 시 로그인 버튼의 배경 색상을 변경합니다. */
+}
+.h1 {
+	text-align: center;        /* 텍스트를 가운데 정렬합니다. */
+    background-color: #045C18;    /* 배경 색상을 지정합니다. */
+    color: white;              /* 글자 색상을 지정합니다. */
+    padding: 10px;             /* 내부 여백을 추가합니다. */
+    letter-spacing: 7px;       /* 글자 사이를 조절합니다. */
+}
+
+h2 {
+    text-align: center;        /* 텍스트를 가운데 정렬합니다. */
+    background-color:white ;    /* 배경 색상을 지정합니다. */
+    color: #000000;              /* 글자 색상을 지정합니다. */
+    padding: 10px;             /* 내부 여백을 추가합니다. */
+    letter-spacing: 7px;       /* 글자 사이를 조절합니다. */
+}
+
+h3 {
+    text-align: center;        /* 텍스트를 가운데 정렬합니다. */
+    background-color: #045C18;    /* 배경 색상을 지정합니다. */
+    color: white;              /* 글자 색상을 지정합니다. */
+    padding: 10px;             /* 내부 여백을 추가합니다. */
+    letter-spacing: 10px;       /* 글자 사이를 조절합니다. */
+}
+
+/* 기본 버튼 스타일 */
+.button {
+  display: inline-block;    /* 인라인 블록 요소로 설정합니다. */
+  padding: 10px 20px;        /* 내부 여백을 설정합니다. (상하 10px, 좌우 20px) */
+  font-size: 16px;           /* 글자 크기를 설정합니다. */
+  text-align: center;        /* 텍스트를 가운데 정렬합니다. */
+  text-decoration: none;     /* 텍스트에 밑줄을 제거합니다. */
+  cursor: pointer;           /* 마우스 커서를 포인터로 변경합니다. */
+  border-radius: 5px;        /* 버튼의 모서리를 둥글게 처리합니다. */
+  transition: background-color 0.3s;  /* 배경 색상 전환에 0.3초의 시간을 부여합니다. */
+}
+
+/* 추가 버튼 */
+.button.add {
+  background-color: #074A13;  /* 기본 버튼의 배경 색상을 설정합니다. */
+  color: #ffffff;             /* 기본 버튼의 글자 색상을 설정합니다. */
+  float: right;
+  padding: 5px 8px; /* 상하, 좌우 패딩 설정 */
+}
+
+/* 이전, 다음 버튼 */
+.button.one {
+  background-color: #E4F3E8;  /* 기본 버튼의 배경 색상을 설정합니다. */
+  color: #000000;             /* 기본 버튼의 글자 색상을 설정합니다. */
+  
+}
+
+/*삭제 버튼 */
+.button.delete {
+  background-color: #e74c3c;  /* 세컨더리 버튼의 배경 색상을 설정합니다. */
+  color: #ffffff;             /* 세컨더리 버튼의 글자 색상을 설정합니다. */
+  float: right;
+  padding: 5px 8px; /* 상하, 좌우 패딩 설정 */
+}
+
+/* 수정 버튼 */
+.button.modify {
+  background-color: #FF7F50	;  /* 어웨이버튼의 배경 색상을 설정합니다. */
+  color: #ffffff;             /* 어웨이버튼의 글자 색상을 설정합니다. */
+  float: right;
+  padding: 5px 8px; /* 상하, 좌우 패딩 설정 */
+}
+
+/* 호버 효과 */
+.button:hover {
+  background-color: #000000;  /* 호버 시 버튼의 배경 색상을 변경합니다. */
+  color: white;
+}
+
+/* 테이블 스타일링 */
+.centered-table {
+  margin: auto;            /* 가운데 정렬을 위해 margin을 auto로 설정합니다. */
+  background-color: #FDF5E6; /* 테이블의 배경 색상을 지정합니다. */
+  border-collapse: collapse; /* 셀 경계를 합칩니다. */
+  width: 80%;               /* 테이블의 폭을 설정합니다. */
+}
+
+/* 셀 스타일링 */
+.centered-table th, .centered-table td {
+  border: 1px solid #dddddd; /* 셀 경계를 설정합니다. */
+  text-align: left;         /* 텍스트를 왼쪽 정렬합니다. */
+  padding: 8px;             /* 셀 내부 여백을 설정합니다. */
+}
+
+/* 짝수 행 배경색 설정 */
+.centered-table tr:nth-child(even) {
+  background-color: #F8F8FF; /* 짝수 행의 배경 색상을 지정합니다. */
+}
+
+/* 테이블 헤더 배경색 설정 */
+.centered-table th {
+  background-color: #8FBC8F; /* 테이블 헤더의 배경 색상을 지정합니다. */
+  color: #ffffff;           /* 테이블 헤더의 글자 색상을 지정합니다. */
+}
+
+
+/* 테이블 스타일링 */
+.calendar-table {
+  width: 1000px;             /* 테이블의 폭을 지정합니다. */
+  margin: auto;             /* 테이블을 가운데 정렬합니다. */
+  border-collapse: collapse; /* 셀 경계를 합칩니다. */
+}
+
+/* 셀 스타일링 */
+.calendar-table th {
+  border: 1px solid #dddddd; /* 셀 경계를 설정합니다. */
+  text-align: center;        /* 텍스트를 가운데 정렬합니다. */
+  padding: 10px;             /* 셀 내부 여백을 설정합니다. */
+  width: 100px;               /* 셀의 폭을 지정합니다. */
+}
+
+.calendar-table td {
+  border: 1px solid #dddddd; /* 셀 경계를 설정합니다. */
+  padding: 10px;             /* 셀 내부 여백을 설정합니다. */
+  width: 100px;               /* 셀의 폭을 지정합니다. */
+}
+
+.calendar-table a {
+    display: block;
+    text-decoration: none; /* 밑줄 제거 */
+    text-align: right;
+    position: fixed;
+    top: 0;
+    right: 0;
+}
+
+/* 테이블 헤더 배경색 설정 */
+.calendar-table th {
+  background-color: #8FBC8F; /* 테이블 헤더의 배경 색상을 지정합니다. */
+  color: #ffffff;           /* 테이블 헤더의 글자 색상을 지정합니다. */
+}
+
+
+/* td의 세로 길이를 지정합니다. */
+.calendar-table td {
+  height: 80px;
+}
+
+textarea {
+  border: none; /* 테두리를 제거합니다. */
+  resize: none; /* 크기 조절을 비활성화합니다. */
+  outline: none; /* 포커스 효과 제거 */
+}
+
+/* p 태그 오른쪽 정렬 */
+p.right-align {
+    text-align: right;
+}
+

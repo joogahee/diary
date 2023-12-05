@@ -34,6 +34,11 @@ public class ModifyCommentController extends HttpServlet {
 		Map<String,Object> map = new HashMap<>();
 		map = commentDao.selectCommentOne(commentNo);
 		
+		// secret 값이 null이면 0으로 설정
+		if (map.get("secret") == null) {
+		    map.put("secret", 0);
+		}
+		
 		//modifyComment 출력
 		request.setAttribute("map", map);
 		
@@ -75,9 +80,9 @@ public class ModifyCommentController extends HttpServlet {
 		
 		//수정 성공 디버깅
 		if(row == 1) {
-			System.out.println("notice update 성공");
+			System.out.println("comment update 성공");
 		}else {
-			System.out.println("notice update 실패");
+			System.out.println("comment update 실패");
 		}		
 		
 		//리다이렉트

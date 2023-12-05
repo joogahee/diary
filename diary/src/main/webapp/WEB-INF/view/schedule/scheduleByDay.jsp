@@ -6,19 +6,23 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/schedule.css">
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/schedule.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/diary.css">
 </head>
 <body>
+	<!-- menu -->
+	<div id="menu">
+    <c:import url="/WEB-INF/view/inc/menu.jsp"/>
+	</div>
+	
 	<div>
 		<div>
 			<!-- param영역에도 날짜가 저장되어 있으므로 -->
 			<!--<h2>${loginMember.memberId}님의 ${param.targetY}년 ${param.targetM+1}월 ${param.targetD}일의 일정</h2>-->
 			<!-- 로 받아도 됨 --> 
-			<h2>${loginMember.memberId}님의 ${targetY}년 ${targetM}월 ${targetD}일의 일정</h2> 
+			<h2 class="h1">${loginMember.memberId}님의 ${targetY}년 ${targetM}월 ${targetD}일의 일정</h2> 
 		</div>
 		<div>
-			<table>
+			<table class="centered-table">
 				<tr>
 					<th>번호</th>
 					<th>일정</th>
@@ -37,7 +41,7 @@
 								<input type="hidden" name="targetM" value="${targetM}">
 								<input type="hidden" name="targetD" value="${targetD}">
 								<input type="hidden" name="scheduleNo" value="${s.scheduleNo }">
-								<button type="submit">수정</button>
+								<button type="submit" class="button modify">수정</button>
 							</form>
 						</td>
 						<td>
@@ -46,7 +50,7 @@
 								<input type="hidden" name="targetM" value="${targetM}">
 								<input type="hidden" name="targetD" value="${targetD}">
 								<input type="hidden" name="scheduleNo" value="${s.scheduleNo }">
-								<button type="submit">삭제</button>
+								<button type="submit" class="button delete">삭제</button>
 							</form>
 						</td>
 					</tr>
@@ -56,13 +60,21 @@
 		<!-- 추가 폼 -->
 		<div>
 		<h3>일정추가</h3>
-			<form method="post" action="${pageContext.request.contextPath}/schedule/addSchedule" >
-				<input type="hidden" name="targetY" value="${targetY}">
-				<input type="hidden" name="targetM" value="${targetM}">
-				<input type="hidden" name="targetD" value="${targetD}">
-				<textarea rows="3" cols="80" name="scheduleMemo"></textarea>
-				<button type="submit">추가</button>
+			<table class="centered-table">
+				<form method="post" action="${pageContext.request.contextPath}/schedule/addSchedule" >
+					<input type="hidden" name="targetY" value="${targetY}">
+					<input type="hidden" name="targetM" value="${targetM}">
+					<input type="hidden" name="targetD" value="${targetD}">
+				<tr>
+					<td>
+						<textarea rows="3" cols="80" name="scheduleMemo"></textarea>
+					</td>
+					<td>
+						<button type="submit" class="button add">추가</button>
+					</td>
+				</tr>
 			</form>
+			</table>
 		</div>		
 	</div>
 </body>

@@ -138,7 +138,7 @@ public class ScheduleDao {
 						SELECT
 							DAY(schedule_date) scheduleDay,
 							COUNT(*) cnt,
-							GROUP_CONCAT(substr(schedule_memo, 1, 5)SEPARATOR '\n') memo
+							GROUP_CONCAT(substr(schedule_memo, 1, 5)) memo
 						FROM schedule
 						WHERE member_id = ? 
 						AND YEAR(schedule_date) = ?

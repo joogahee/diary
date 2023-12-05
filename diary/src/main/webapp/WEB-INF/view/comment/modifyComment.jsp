@@ -1,57 +1,62 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="EUC-KR">
 <title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/diary.css">
 </head>
 <body>
-	<h1>´ñ±Û ¼öÁ¤</h1>
-	<p>¼öÁ¤ÇÏ·Á¸é ºñ¹Ð¹øÈ£¸¦ ÀÔ·ÂÇÏ¼¼¿ä.</p>
+	<!-- menu -->
+	<div id="menu">
+    <c:import url="/WEB-INF/view/inc/menu.jsp"/>
+	</div>
+	<h1 class="h1">ëŒ“ê¸€ ìˆ˜ì •</h1>
+	<p>ìˆ˜ì •í•˜ë ¤ë©´ ë¹„ë°€ë²ˆí˜¸ë¥¼ ìž…ë ¥í•˜ì„¸ìš”.</p>
 	<form method="post" action="${pageContext.request.contextPath}/comment/modifyComment">
 		<input type="hidden" value="${map.commentNo }" name="commentNo">
 		<input type="hidden" value="${map.noticeNo }" name="noticeNo">
-		<table border="1">
+		<table class="centered-table">
 			<tr>
-				<th>°øÁö Á¦¸ñ</th>
+				<th>ê³µì§€ ì œëª©</th>
 				<td>${map.noticeTitle }</td>
 			</tr>
 			<tr>
-				<th>³»¿ë</th>
+				<th>ë‚´ìš©</th>
 				<td>
 				<textarea rows="3" cols="80">${map.noticeContent }
 					</textarea>
 				</td>
 			</tr>
 		</table>
-		<h3>¼öÁ¤ÇÒ ´ñ±Û</h3>
-		<table border="1">
+		<h3>ìˆ˜ì •í•  ëŒ“ê¸€</h3>
+		<table class="centered-table">
 			<tr>
-				<th>ÀÛ¼ºÀÚ</th>
+				<th>ìž‘ì„±ìž</th>
 				<td><input type="text" value="${map.memberId}" name="memberId" readonly="readonly"></td>
 			</tr>
 			<tr>
-				<th>´ñ±Û</th>
+				<th>ëŒ“ê¸€</th>
 				<td><textarea rows="3" cols="80" name="commentContent">${map.commentContent }
 					</textarea>
 				</td>
 			</tr>
 			<tr>
-				<th>ÀÛ¼ºÀÏ</th>
+				<th>ìž‘ì„±ì¼</th>
 				<td>${map.createdate}</td>
 			</tr>
 			<tr>
 				<label for="secretCheckbox">
-    				<input type="checkbox" id="secretCheckbox" name="secret" value="1"> ºñ¹Ð±Û
+    				<input type="checkbox" id="secretCheckbox" name="secret" value="1"> ë¹„ë°€ê¸€
 				</label>
 			</tr>
 			<tr>
-				<th>ºñ¹Ð¹øÈ£</th>
+				<th>ë¹„ë°€ë²ˆí˜¸</th>
 				<td><input type="password" name="password"></td>
 			</tr>
 		</table>
-		<button type="submit">¼öÁ¤</button>
+		<button type="submit" class="button modify">ìˆ˜ì •</button>
 	</form>
 </body>
 </html>

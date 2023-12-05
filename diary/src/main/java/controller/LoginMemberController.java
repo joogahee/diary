@@ -60,12 +60,14 @@ public class LoginMemberController extends HttpServlet {
 		if(resultMember == null) {
 			//로그인창으로 리다이렉트
 			response.sendRedirect(request.getContextPath()+"/member/loginMember");
+			System.out.println("로그인 실패");
 			return;
 		}
 		
 		//로그인 성공
 		//세션 설정
 		session.setAttribute("loginMember", resultMember);
+		System.out.println(resultMember + "로그인 성공");
 		
 		//memberHome으로 리다이렉트
 		response.sendRedirect(request.getContextPath()+"/member/memberHome");
