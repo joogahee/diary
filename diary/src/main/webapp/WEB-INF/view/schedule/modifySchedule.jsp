@@ -15,7 +15,7 @@
     <c:import url="/WEB-INF/view/inc/menu.jsp"/>
 	</div>
 	
-	<h1 class="h1">일정 수정</h1>
+	<h2 class="h1">일정 수정</h2>
 	<div>
 		<form method="post" action="${pageContext.request.contextPath}/schedule/modifySchedule">
 			<input type="hidden" name="scheduleNo" value="${schedule.scheduleNo }">

@@ -14,7 +14,7 @@
     <c:import url="/WEB-INF/view/inc/menu.jsp" />
 	</div>
 	<div>
-		<h1 class="h1">공지사항 수정</h1>
+		<h2 class="h1">공지사항 수정</h2>
 		<form method="post" action="${pageContext.request.contextPath}/notice/modifyNotice">
 			<table class="centered-table">
 				<tr>

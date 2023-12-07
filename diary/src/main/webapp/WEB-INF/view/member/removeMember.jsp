@@ -22,8 +22,8 @@
 				<div class="login-form">
 					<input type="text" id="memberId" name="memberId" value="${loginMember.memberId }" readonly="readonly" class="login-input">
 					<input type="password" id="memberPw" placeholder="비밀번호를 입력하세요." name="memberPw" class="login-input">
+					<button id="deleteBtn" class="registration-button">탈퇴</button>
 				</div>
-				<button id="deleteBtn" class="registration-button">탈퇴</button>
 			</form>
 	</div>
 </body>

@@ -16,7 +16,7 @@
 	</div>
 	
 	<div>
-		<h1 class="h1">공지사항</h1>
+		<h2 class="h1">공지사항</h2>
 		<!-- 공지사항 상세보기 폼 -->
 		<table class="centered-table">
 			<tr>
@@ -55,7 +55,7 @@
 		<br>
 	</div>
 	<!-- 댓글 리스트 출력 -->
-	<h1 class="h1">댓글</h1>
+	<h2 class="h1">댓글</h2>
 	<div>
 		<table class="centered-table">
 		<c:forEach var="c" items="${list}">

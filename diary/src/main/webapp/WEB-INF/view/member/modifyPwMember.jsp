@@ -22,8 +22,8 @@
 				<input type="password" id="memberPw" name="memberPw" class="login-input" placeholder="비밀번호를 입력하세요.">
 				<input type="password" id="newMemberPw" name="newMemberPw" class="login-input" placeholder="새 비밀번호를 입력하세요.">
 				<input type="password" id="newMemberPw2" name="newMemberPw2" class="login-input" placeholder="새 비밀번호를 다시 입력하세요.">
+				<button id="modifyBtn" class="registration-button">변경</button>
 			</div>
-			<button id="modifyBtn" class="registration-button">변경</button>
 		</form>
  	</div>
 </body>
