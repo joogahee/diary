@@ -51,15 +51,24 @@
 						</td>
 						<td>${n.createdate}</td>
 					</tr>
-				</c:forEach>
-			<!-- 로그인한 멤버의 레벨이 1일경우에만 공지 추가 가능 -->
-			<c:if test="${memberLevel == 1}">
-				<a class="button add" href="${pageContext.request.contextPath}/notice/addNotice">공지추가</a>
-			</c:if>
+				</c:forEach>		
+				
+	<!-- 로그인한 멤버의 레벨이 1일경우에만 공지 추가 가능 -->
+		<c:if test="${memberLevel == 1}">
+			<a class="button add" href="${pageContext.request.contextPath}/notice/addNotice">공지추가</a>
+		</c:if>
 			</table>
 		</div>
 	</div>
-	
+	<!-- 공지사항 페이징 -->
+	<div class="paging-bar">	
+		<a class="paging-link" href="${pageContext.request.contextPath}/member/memberHome?currentPage=1">처음</a>		
+			<c:forEach var="p" begin="1" end="${lastPage}">
+    			<a class="paging-link" href="${pageContext.request.contextPath}/member/memberHome?currentPage=${p}">${p}</a>
+			</c:forEach>
+		<a class="paging-link" href="${pageContext.request.contextPath}/member/memberHome?currentPage=${lastPage}">마지막</a>	
+	</div>		
+		
 	<!-- 달력 -->
 	<div class="container">
 		<h1 class="h1">
@@ -67,61 +76,55 @@
 				${targetY }년 ${targetM+1}월 
 			<a class="button one" href="${pageContext.request.contextPath}/member/memberHome?targetY=${targetY}&targetM=${targetM+1}">다음달</a>	
 		</h1>
-		
-		<div>
-			
-				
-		</div>
 	</div>
-	
-		<br>
-		
+	<br>	
 	<div>
-		<div>
-			<table class="calendar-table">
-				<tr>
-					<th>일</th>
-					<th>월</th>
-					<th>화</th>
-					<th>수</th>
-					<th>목</th>
-					<th>금</th>
-					<th>토</th>
-				</tr>
-				<tr>
-					<c:forEach var="i" begin="1" end="${totalTd}" step="1">
-						<c:set var="d" value="${i - beginBlank}">
-						<td>
-							<c:if test="${ d < 1 || d > lastD }">
-								&nbsp;
-							</c:if>
-							<c:if test="${!(d < 1 || d > lastD )}">
-								<a href="${pageContext.request.contextPath}/schedule/scheduleByDay?targetY=${targetY}&targetM=${targetM+1}&targetD=${d}">
-									${d}
-								</a>
-								<div>
-									<c:forEach var="m" items="${list}">
-										<c:if test="${m.scheduleDay == (d)}">
-											<div>
-												<c:if test="${m.cnt} > 0"></c:if>
-													${m.cnt}
-											</div>
-											<div>${m.memo}</div>
-										</c:if>
-									</c:forEach>
-								</div>
-									
-							</c:if>
-							<c:if test="${i<totalTd && i%7==0 }">
-								</tr><tr>
-							</c:if>
-						</td>
-				</c:set>
-					</c:forEach>
-				</tr>
-			</table>
-		</div>
+	<div>
+		<table class="calendar-table">
+		    <tr>
+		        <th>일</th>
+		        <th>월</th>
+		        <th>화</th>
+		        <th>수</th>
+		        <th>목</th>
+		        <th>금</th>
+		        <th>토</th>
+		    </tr>
+		    <tr>
+		        <c:forEach var="i" begin="1" end="${totalTd}" step="1">
+		            <c:set var="d" value="${i - beginBlank}" />
+		            <td>
+		                <c:if test="${d < 1 || d > lastD}">
+		                    &nbsp;
+		                </c:if>
+		                <c:if test="${!(d < 1 || d > lastD)}">
+							<a href="${pageContext.request.contextPath}/schedule/scheduleByDay?targetY=${targetY}&targetM=${targetM+1}&targetD=${d}">
+		                       ${d }
+							</a>
+		 
+		                    
+		                    <div>
+		                        <c:forEach var="m" items="${list}">
+		                            <c:if test="${m.scheduleDay == d}">
+		                                <div>${m.memo}</div>
+		                                <div>
+		                                    <c:if test="${m.cnt > 0}">
+		                                       <p>${m.cnt}개의 일정</p>
+		                                    </c:if>
+		                                </div>
+		                            </c:if>
+		                        </c:forEach>
+		                    </div>
+		                </c:if>
+		                <c:if test="${i < totalTd && i % 7 == 0}">
+		                    </tr><tr>
+		                </c:if>
+		            </td>
+		        </c:forEach>
+		    </tr>
+		</table>
 	</div>
+</div>
 	
 </body>
 </html>

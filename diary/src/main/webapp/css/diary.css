@@ -223,23 +223,22 @@ h3 {
   border: 1px solid #dddddd; /* 셀 경계를 설정합니다. */
   text-align: center;        /* 텍스트를 가운데 정렬합니다. */
   padding: 10px;             /* 셀 내부 여백을 설정합니다. */
-  width: 100px;               /* 셀의 폭을 지정합니다. */
+  width: 120px;               /* 셀의 폭을 지정합니다. */
 }
 
 .calendar-table td {
   border: 1px solid #dddddd; /* 셀 경계를 설정합니다. */
   padding: 10px;             /* 셀 내부 여백을 설정합니다. */
-  width: 100px;               /* 셀의 폭을 지정합니다. */
+  width: 120px;               /* 셀의 폭을 지정합니다. */
 }
 
 .calendar-table a {
-    display: block;
-    text-decoration: none; /* 밑줄 제거 */
-    text-align: right;
-    position: fixed;
-    top: 0;
-    right: 0;
+  text-decoration: none; /* 밑줄 제거 */
+  font-size: 20px; /* 글씨 크기 설정 */
+  font-weight: bold; /* 굵게 설정 */
+  color: #000; /* 글자 색상 지정 */
 }
+
 
 /* 테이블 헤더 배경색 설정 */
 .calendar-table th {
@@ -247,10 +246,16 @@ h3 {
   color: #ffffff;           /* 테이블 헤더의 글자 색상을 지정합니다. */
 }
 
+.calendar-table p {
+    color: #333;          /* 글자색 */
+    font-size: 13px;       /* 글자 크기 */
+    background-color: #f5f5f5; /* 배경색 */         
+}
+
 
 /* td의 세로 길이를 지정합니다. */
 .calendar-table td {
-  height: 80px;
+  height: 120px;
 }
 
 textarea {
@@ -264,3 +269,24 @@ p.right-align {
     text-align: right;
 }
 
+.paging-bar {
+    text-align: center;
+    margin-top: 20px; /* 원하는 여백 값으로 조절 가능 */
+}
+
+.paging-link {
+    display: inline-block;
+    padding: 7px 10px;
+    text-decoration: none;
+    border: 2px solid #408080;
+    border-radius: 10px;
+    background-color: #008000;
+    font-size: 12px;
+    color: #fff;
+    margin: 0 1px; /* 각 링크 사이의 여백을 조절합니다. */
+}
+
+.paging-link:hover {
+    background-color: #0B6121;
+    color: #fff;
+}

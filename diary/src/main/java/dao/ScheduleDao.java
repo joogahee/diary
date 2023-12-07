@@ -138,7 +138,7 @@ public class ScheduleDao {
 						SELECT
 							DAY(schedule_date) scheduleDay,
 							COUNT(*) cnt,
-							GROUP_CONCAT(substr(schedule_memo, 1, 5)) memo
+							GROUP_CONCAT(substr(schedule_memo, 1, 5) SEPARATOR '/') memo
 						FROM schedule
 						WHERE member_id = ? 
 						AND YEAR(schedule_date) = ?
@@ -216,6 +216,7 @@ public class ScheduleDao {
 								DAY(schedule_date) scheduleDay, 
 								schedule_memo memo, 
 								schedule_no scheduleNo, 
+								schedule_emoji scheduleEmoji, 
 								createdate
 							FROM SCHEDULE
 							WHERE member_id = ?
@@ -241,6 +242,7 @@ public class ScheduleDao {
 		            m.put("memo", rs.getString("memo"));
 		            m.put("scheduleNo", rs.getInt("scheduleNo"));
 		            m.put("createdate", rs.getString("createdate"));
+		            m.put("scheduleEmoji", rs.getString("scheduleEmoji"));
 
 		            list.add(m);
 		         }	

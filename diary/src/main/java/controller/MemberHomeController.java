@@ -71,9 +71,23 @@ public class MemberHomeController extends HttpServlet {
 		//list.size 디버깅
 		System.out.println(list.size() + " <--list.size");
 		
+		
+		//공지 페이징
+		int currentPage = 1;;
+		if(request.getParameter("currentPage")!= null) {
+			currentPage = Integer.parseInt(request.getParameter("currentPage"));
+		}
+		int rowPerPage = 5; //한페이지에 표시할 공지사항 수 
+		int beginRow = (currentPage - 1) * rowPerPage;
+		
 		//공지 출력위한 모델값
 		NoticeDao noticeDao = new NoticeDao();
-		List<Map<String,Object>> list2 = noticeDao.selectNoticeList();
+		List<Map<String,Object>> list2 = noticeDao.selectNoticeList(beginRow, rowPerPage);
+		
+		int lastPage = (noticeDao.selectNoticeSize())/rowPerPage;
+		if((noticeDao.selectNoticeSize())%rowPerPage > 0) {
+			lastPage = lastPage + 1;
+		}
 		
 		// 로그인한 아이디의 레벨 확인
 		MemberDao memberDao = new MemberDao();
@@ -89,6 +103,7 @@ public class MemberHomeController extends HttpServlet {
 		request.setAttribute("beginBlank", beginBlank);
 		request.setAttribute("endBlank", endBlank);
 		request.setAttribute("totalTd", totalTd);
+		request.setAttribute("lastPage", lastPage);
 		
 		request.setAttribute("memberLevel", memberLevel);
 		

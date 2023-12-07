@@ -382,7 +382,7 @@ public class NoticeDao {
 	ON m.member_id = n.member_id
 	ORDER BY n.createdate desc
     */
-   public List<Map<String,Object>> selectNoticeList() {
+   public List<Map<String,Object>> selectNoticeList(int beginRow, int rowPerPage) {
 	   List<Map<String,Object>> list = new ArrayList<>();
 	   
 	   Connection conn = null;
@@ -404,8 +404,12 @@ public class NoticeDao {
 							FROM notice n inner join member m
 							ON m.member_id = n.member_id
 							ORDER BY n.createdate desc
+							LIMIT ?, ?
 						""";
 			stmt = conn.prepareStatement(sql);
+			stmt.setInt(1, beginRow);
+			stmt.setInt(2, rowPerPage);
+			
 			//쿼리문 디버깅
 			System.out.println("selectNoticeList : " +stmt);
 			rs = stmt.executeQuery();
@@ -434,5 +438,51 @@ public class NoticeDao {
 		}
 	   
       return list;
+   }
+   
+   //페이징을 위해 전체 공지 수 
+   /*
+		SELECT COUNT(notice_no) 
+		FROM notice 
+    */
+   public int selectNoticeSize() {
+	   int countNotice = 0;
+	   
+	   Connection conn = null;
+	   PreparedStatement stmt = null;
+	   ResultSet rs = null;
+	   try {
+			// Tomcat context.xml 설정을 로드
+			Context context = new InitialContext();
+			// context.xml에서 커넥션풀 객체 로드
+			DataSource ds = (DataSource)context.lookup("java:comp/env/jdbc/diary");
+			conn = ds.getConnection();
+			
+			String sql = """
+						    SELECT COUNT(notice_no) 
+							FROM notice 
+						""";
+			stmt = conn.prepareStatement(sql);
+			//쿼리문 디버깅
+			System.out.println("selectNoticeSize : " +stmt);
+			rs = stmt.executeQuery();
+			
+			while (rs.next()) {
+				countNotice=rs.getInt(1);
+			}
+
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				stmt.close();
+				conn.close();
+				rs.close();
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
+		}
+	   
+      return countNotice;
    }
 }
