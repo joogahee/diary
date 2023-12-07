@@ -36,6 +36,11 @@
 		<h3>공지사항</h3>
 		<div>
 			<table class="centered-table">
+				<colgroup>
+            		<col width=10%>
+            		<col width=70%>
+            		<col width=20%>
+ 	    		</colgroup>
 				<tr>
 					<th>번호</th>
 					<th>제목</th>
@@ -45,7 +50,7 @@
 					<tr>
 						<td>${n.noticeNo}</td>
 						<td>
-							<a href="${pageContext.request.contextPath}/notice/noticeOne?noticeNo=${n.noticeNo}">
+							<a class="a-none" href="${pageContext.request.contextPath}/notice/noticeOne?noticeNo=${n.noticeNo}">
 								${n.noticeTitle}
 							</a>
 						</td>

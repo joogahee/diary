@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/diary.css">
 </head>
 <body>
@@ -61,16 +62,16 @@
 		<div>
 		<h3>일정추가</h3>
 			<table class="centered-table">
-				<form method="post" action="${pageContext.request.contextPath}/schedule/addSchedule" >
+				<form method="post" action="${pageContext.request.contextPath}/schedule/addSchedule" id="scheduleAddForm">
 					<input type="hidden" name="targetY" value="${targetY}">
 					<input type="hidden" name="targetM" value="${targetM}">
 					<input type="hidden" name="targetD" value="${targetD}">
 				<tr>
 					<td>
-						<textarea rows="3" cols="80" name="scheduleMemo"></textarea>
+						<textarea rows="3" cols="80" name="scheduleMemo" id="scheduleMemo"></textarea>
 					</td>
 					<td>
-						<button type="submit" class="button add">추가</button>
+						<button type="button" id="scheduleAddButton" class="button add">추가</button>
 					</td>
 				</tr>
 			</form>
@@ -78,5 +79,13 @@
 		</div>		
 	</div>
 </body>
-
+<script type="text/javascript">
+	$('#scheduleAddButton').click(function() {
+		if($('#scheduleMemo').val().length < 1) {
+			alert('일정 내용을 입력하세요.');
+		}else {
+			$('#scheduleAddForm').submit();
+		}
+	});
+</script>
 </html>

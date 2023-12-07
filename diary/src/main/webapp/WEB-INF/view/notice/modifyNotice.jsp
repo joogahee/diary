@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/diary.css">
 </head>
 <body>
@@ -15,7 +16,7 @@
 	</div>
 	<div>
 		<h2 class="h1">공지사항 수정</h2>
-		<form method="post" action="${pageContext.request.contextPath}/notice/modifyNotice">
+		<form method="post" action="${pageContext.request.contextPath}/notice/modifyNotice" id="noticeModifyForm">
 			<table class="centered-table">
 				<tr>
 					<th>번호</th>
@@ -36,9 +37,19 @@
 					<td><input type="password" name="password"></td>
 				</tr>
 			</table>
-				<button class="button modify" type="submit">수정</button>
+				<button class="button modify" type="button" id="noticeModifyButton">수정</button>
 		</form>
 	</div>
-
 </body>
+<script type="text/javascript">
+	$('#noticeModifyButton').click(function() {
+		if($('#noticeTitle').val().length < 1) {
+			alert('공지제목을 입력하세요');
+		}else if($('#noticeContent').val().length < 1) {
+            alert('공지 내용을 입력하세요.'); 
+        }else {
+			$('#noticeModifyForm').submit();
+		}
+	});
+</script>
 </html>

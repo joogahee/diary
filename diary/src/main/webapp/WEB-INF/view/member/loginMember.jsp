@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/diary.css">
 
 </head>
@@ -23,7 +23,7 @@
       		</div>
       		<div class="login-form">
       		<input class="login-input" type="password" placeholder="비밀번호를 입력하세요." id="memberPw" name="memberPw">
-      		<button class="login-button">로그인</button>
+      		<button class="login-button" id="loginBtn" type="button">로그인</button>
       			<br>
       		<a href="${pageContext.request.contextPath}/member/addMember" class="a-link">회원가입하기</a>
       		</div>
@@ -33,7 +33,6 @@
 
 
 <script type="text/javascript">
-    $(document).ready(function() {
         $('#loginBtn').click(function() {
             if($('#memberId').val().length < 1) {
                 alert('아이디를 입력하세요');
@@ -43,7 +42,6 @@
                 $('#loginForm').submit();
             }
         });
-    });
 </script>
 
 </html>

@@ -8,6 +8,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/diary.css">
 </head>
 <body>
@@ -31,7 +32,7 @@
 <script type="text/javascript">
 	$('#deleteBtn').click(function() {
 		if($('#memberPw').val().length < 1) {
-			alert('비밀번호를 입력하세요');
+			alert('비밀번호를 입력하세요.');
 		}else {
 			$('#deleteForm').submit();
 		}

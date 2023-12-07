@@ -5,6 +5,7 @@
 <head>
 <meta charset="EUC-KR">
 <title>Insert title here</title>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/diary.css">
 </head>
 <body>
@@ -14,7 +15,7 @@
 	</div>
 	<h1 class="h1">댓글 수정</h1>
 	<p>수정하려면 비밀번호를 입력하세요.</p>
-	<form method="post" action="${pageContext.request.contextPath}/comment/modifyComment">
+	<form method="post" action="${pageContext.request.contextPath}/comment/modifyComment" id="commentModifyForm">
 		<input type="hidden" value="${map.commentNo }" name="commentNo">
 		<input type="hidden" value="${map.noticeNo }" name="noticeNo">
 		<table class="centered-table">
@@ -38,7 +39,7 @@
 			</tr>
 			<tr>
 				<th>댓글</th>
-				<td><textarea rows="3" cols="80" name="commentContent">${map.commentContent }
+				<td><textarea rows="3" cols="80" name="commentContent" id="commentContent">${map.commentContent }
 					</textarea>
 				</td>
 			</tr>
@@ -53,10 +54,21 @@
 			</tr>
 			<tr>
 				<th>비밀번호</th>
-				<td><input type="password" name="password"></td>
+				<td><input type="password" name="password" id="password"></td>
 			</tr>
 		</table>
-		<button type="submit" class="button modify">수정</button>
+		<button type="button" id="commentModifyButton" class="button modify">수정</button>
 	</form>
 </body>
+<script type="text/javascript">
+	$('#commentModifyButton').click(function() {
+		if($('#commentContent').val().length < 1) {
+			alert('댓글을 입력하세요');
+		}else if($('#password').val().length < 1) {
+            alert('비밀번호를 입력하세요.'); 
+        }else {
+			$('#commentModifyForm').submit();
+		}
+	});
+</script>
 </html>

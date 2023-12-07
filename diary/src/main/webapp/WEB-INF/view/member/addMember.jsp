@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/diary.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
 </head>
 <body>
 	<!-- menu -->
@@ -20,7 +20,7 @@
 					<input type="text" id="memberId" name="memberId" placeholder="아이디를 입력하세요." class="login-input">
 					<input type="password" id="memberPw" name="memberPw" placeholder="비밀번호를 입력하세요." class="login-input" >
 					<input type="password" id="memberPw2" placeholder="비밀번호를 다시 입력하세요." class="login-input">
-			<button id="addBtn" class="login-button">회원가입</button>
+			<button id="addBtn" class="login-button" type="button">회원가입</button>
 				<br>
 			<a href="${pageContext.request.contextPath}/member/loginMember" class="a-link">로그인하기</a>
 			</div>
@@ -29,22 +29,17 @@
 </body>
 
 <script type="text/javascript">
-    $(document).ready(function() {
         $('#addBtn').click(function() {
             if ($('#memberId').val().length < 1) {
                 alert('아이디를 입력하세요.');
-                return;
             } else if ($('#memberPw').val().length < 1) {
                 alert('비밀번호를 입력하세요.');
-                return;
             } else if ($('#memberPw').val() != $('#memberPw2').val()) {
                 alert('비밀번호확인이 다릅니다.');
-                return;
             } else {
                 $('#addForm').submit();
             }
         });
-    });
 </script>
 
 </html>

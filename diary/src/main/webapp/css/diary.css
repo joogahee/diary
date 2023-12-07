@@ -18,7 +18,7 @@ body {
   list-style-type: none;     /* 목록 스타일 제거 */
   margin: 100;                 /* 바깥쪽 여백 제거 */
   padding: 0;                /* 내부 여백 제거 */
-  background-color: #86E664; /* 배경 색상 설정 */
+  background-color: #8FBC8F; /* 배경 색상 설정 */
   overflow: hidden;          /* 자식 요소들을 감출 때 사용하는 오버플로 속성 */
 }
 
@@ -115,7 +115,7 @@ body {
 }
 .h1 {
 	text-align: center;        /* 텍스트를 가운데 정렬합니다. */
-    background-color:#86E664;    /* 배경 색상을 지정합니다. */
+    background-color:#C2EBBE;    /* 배경 색상을 지정합니다. */
     color: #000000;             /* 글자 색상을 지정합니다. */
     padding: 10px;             /* 내부 여백을 추가합니다. */
     letter-spacing: 7px;       /* 글자 사이를 조절합니다. */
@@ -280,16 +280,15 @@ p.right-align {
     display: inline-block;
     padding: 7px 10px;
     text-decoration: none;
-    border: 2px solid #408080;
     border-radius: 10px;
-    background-color: #008000;
+    background-color: #9d9d9d;
     font-size: 12px;
     color: #fff;
     margin: 0 1px; /* 각 링크 사이의 여백을 조절합니다. */
 }
 
 .paging-link:hover {
-    background-color: #0B6121;
+    background-color: #808080;
     color: #fff;
 }
 
@@ -299,4 +298,15 @@ p.right-align {
     color: #000000;        /* 원하는 글자 색상으로 설정 */
     float: right;          /* 오른쪽 정렬 */
     vertical-align: bottom; /* 아래로 정렬 */
+}
+
+.logo-image {
+  display: block;
+  margin-left: 20px;       /* 왼쪽 여백을 20px로 지정 */
+  margin-right: 20px;      /* 오른쪽 여백을 20px로 지정 */
+}
+
+.a-none{
+	text-decoration: none; /* 밑줄 제거 */
+	font-size: 20px; /* 글씨 크기 설정 */
 }

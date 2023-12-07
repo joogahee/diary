@@ -6,6 +6,7 @@
 <head>
 <meta charset="EUC-KR">
 <title>Insert title here</title>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/diary.css">
 </head>
 <body>
@@ -16,7 +17,7 @@
 	
 	<h1 class="h1">댓글 삭제</h1>
 	<p>삭제하려면 비밀번호를 입력하세요.</p>
-	<form method="post" action="${pageContext.request.contextPath}/comment/removeComment">
+	<form method="post" action="${pageContext.request.contextPath}/comment/removeComment" id="commentRemoveForm">
 		<input type="hidden" value="${map.commentNo }" name="commentNo">
 		<input type="hidden" value="${map.noticeNo }" name="noticeNo">
 		<table class="centered-table">
@@ -50,10 +51,19 @@
 			</tr>
 			<tr>
 				<th>비밀번호</th>
-				<td><input type="password" name="password"></td>
+				<td><input type="password" name="password" id="password"></td>
 			</tr>
 		</table>
-		<button type="submit" class="button delete">삭제</button>
+		<button type="button" id="commentRemoveButton" class="button delete">삭제</button>
 	</form>
 </body>
+<script type="text/javascript">
+	$('#commentRemoveButton').click(function() {
+		 if($('#password').val().length < 1) {
+            alert('비밀번호를 입력하세요.'); 
+        }else {
+			$('#commentRemoveForm').submit();
+		}
+	});
+</script>
 </html>

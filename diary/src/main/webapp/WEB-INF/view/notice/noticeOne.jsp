@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/diary.css">
-<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
 </head>
 <body>
 	<!-- menu -->
@@ -19,24 +19,32 @@
 		<h2 class="h1">공지사항</h2>
 		<!-- 공지사항 상세보기 폼 -->
 		<table class="centered-table">
+		<colgroup>
+            <col width=15%>
+            <col width=10%>
+            <col width=15%>
+            <col width=60%>
+ 	    </colgroup>
 			<tr>
 				<th>번호</th>
 				<td>${notice.noticeNo}</td>
-			</tr>
-			<tr>
 				<th>제목</th>
 				<td>${notice.noticeTitle}</td>
 			</tr>
 			<tr>
+				<th>작성자</th>
+				<td colspan="4">관리자(${notice.memberId})</td>
+			</tr>
+			<tr>
 				<th>내용</th>
-				<td>
+				<td colspan="5">
 					<textarea rows="3" cols="80" name="noticeContent" readonly="readonly" >${notice.noticeContent}
 					</textarea>
 				</td>
 			</tr>
 			<tr>
 				<th>작성일</th>
-				<td>${notice.createdate}</td>
+				<td colspan="5">${notice.createdate}</td>
 			</tr>
 		</table>
 		</div>
@@ -96,7 +104,7 @@
 		</table>
 	</div>
 	<!-- 댓글 작성 폼 -->
-	<h1 class="h1">댓글 작성</h1>
+	<h3 class="h1">댓글 작성</h3>
 	<div>
 		<form method="post" action="${pageContext.request.contextPath}/notice/comment">
 			<input type="hidden" name="noticeNo" value="${notice.noticeNo}">
@@ -111,7 +119,7 @@
 				</td>
 			</tr>
 			<tr>
-				<label for="secretCheckbox">
+				<label  for="secretCheckbox">
     				<input type="checkbox" id="secretCheckbox" name="secret" value="1"> 비밀글
 				</label>
 			</tr>
