@@ -308,5 +308,6 @@ p.right-align {
 
 .a-none{
 	text-decoration: none; /* 밑줄 제거 */
-	font-size: 20px; /* 글씨 크기 설정 */
+	font-size: 15px; /* 글씨 크기 설정 */
+	color: #000000; 
 }

@@ -111,7 +111,7 @@
 		                    <div>
 		                        <c:forEach var="m" items="${list}">
 		                            <c:if test="${m.scheduleDay == d}">
-		                                <div>${m.memo}</div>
+		                                <!--<div>${m.memo}</div>-->
 		                                <div>
 		                                    <c:if test="${m.cnt > 0}">
 		                                       <p>${m.cnt}개의 일정</p>
