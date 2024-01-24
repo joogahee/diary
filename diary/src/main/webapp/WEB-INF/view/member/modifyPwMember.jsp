@@ -34,13 +34,13 @@
 		if($('#memberPw').val().length < 1){
 			alert('기존 비밀번호를 입력하세요');
 			return;
-		}else if($('#memberModifyPw').val().length < 1){
+		}else if($('#newMemberPw').val().length < 1){
 			alert('새 비밀번호를 입력하세요');
 			return;
-		}else if($('#memberModifyPw2').val().length < 1){
+		}else if($('#newMemberPw2').val().length < 1){
 			alert('새 비밀번호확인을 입력하세요');
 			return;
-		}else if($('#memberModifyPw').val() != $('#memberModifyPw2').val()){
+		}else if($('#newMemberPw').val() != $('#newMemberPw2').val()){
 			alert('새 비밀번호를 다시 입력하세요');
 			return;
 		}else {

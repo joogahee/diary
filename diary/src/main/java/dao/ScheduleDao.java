@@ -251,9 +251,15 @@ public class ScheduleDao {
 			e.printStackTrace();
 		} finally {
 			try {
-				rs.close();
-				stmt.close();
-				conn.close();
+		        if (rs != null) {
+		            rs.close();
+		        }
+		        if (stmt != null) {
+		            stmt.close();
+		        }
+		        if (conn != null) {
+		            conn.close();
+		        }
 			} catch (SQLException e1) {
 				e1.printStackTrace();
 			}

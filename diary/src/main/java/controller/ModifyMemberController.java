@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import dao.MemberDao;
+import vo.Member;
 
 @WebServlet("/member/modifyPwMember")
 public class ModifyMemberController extends HttpServlet {
@@ -61,7 +62,7 @@ public class ModifyMemberController extends HttpServlet {
 		//session 삭제
 		session.invalidate();
 				
-		//회원 탈퇴 후 로그인창으로 리다이렉트 
+		//비밀번호 수정 후 로그인창으로 리다이렉트 
 		response.sendRedirect(request.getContextPath()+"/member/loginMember");
 		
 	}
